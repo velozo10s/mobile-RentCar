@@ -1,24 +1,18 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {
-  Badge,
-  Button,
-  Drawer,
-  Switch,
-  Text,
-  TouchableRipple,
-} from 'react-native-paper';
+import {Badge, Drawer, Switch, Text, TouchableRipple} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import {useStore} from '../../lib/hooks/useStore.ts';
 import {logStore} from '../../lib/helpers/logStore.ts';
 import SelectLanguageModal from '../organisms/selectLanguageModal.tsx';
+import LogoutButton from './logoutButton.tsx';
 
 export default function DrawerItems() {
   const {t} = useTranslation();
   const theme = useTheme();
-  const {themeStore, userStore} = useStore();
+  const {themeStore} = useStore();
   const [drawerItemIndex, setDrawerItemIndex] = React.useState<number>(0);
   const [selectLanguageModalVisible, setSelectLanguageModalVisible] =
     React.useState<boolean>(false);
@@ -107,12 +101,7 @@ export default function DrawerItems() {
         </View>
 
         <Drawer.Section showDivider={false}>
-          <Button
-            onPress={userStore.logout}
-            textColor={theme.colors.error}
-            style={styles.logout}>
-            {t('settings.logout')}
-          </Button>
+          <LogoutButton />
         </Drawer.Section>
         <SelectLanguageModal
           isVisible={selectLanguageModalVisible}
@@ -134,8 +123,5 @@ const styles = StyleSheet.create({
   },
   badge: {
     alignSelf: 'center',
-  },
-  logout: {
-    paddingBottom: 16,
   },
 });

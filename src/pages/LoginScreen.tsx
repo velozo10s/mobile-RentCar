@@ -19,7 +19,7 @@ export default function LoginScreen() {
   const navigation = useNavigation('AuthStack');
   const [loading, setLoading] = React.useState(false);
 
-  const login = (data: {email: string; password: string}) => {
+  const login = (data: {user: string; password: string; context: string}) => {
     setLoading(true);
     api.login(data).handle({
       onSuccess: res => {
@@ -33,13 +33,14 @@ export default function LoginScreen() {
   };
 
   const initialValues = {
-    email: 'admin@admin.com',
-    password: 'admin',
+    user: 'zulma@rentcar.com',
+    password: '12345',
+    context: 'WEB',
   };
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email('Invalid email')
+      // .email('Invalid email')
       .required('Email is a required field'),
     password: Yup.string().required('Password is a required field'),
   });
@@ -67,7 +68,7 @@ export default function LoginScreen() {
         <View style={styles.fields}>
           <Field
             component={FormikEmailInput}
-            name="email"
+            name="user"
             label={t('login.email')}
             placeholder={t('login.emailPlaceholder')}
           />
@@ -80,6 +81,7 @@ export default function LoginScreen() {
           <Button
             mode="contained"
             onPress={onLoginPress}
+            disabled={loading}
             loading={loading}
             style={styles.button}>
             {!loading && t('login.loginButton')}
