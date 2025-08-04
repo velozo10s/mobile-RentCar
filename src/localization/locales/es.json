@@ -1,70 +1,76 @@
 {
-  "appName": "M001",
-  "greeting": "¡Bienvenido, {{name}}!",
-  "common": {
-    "cancel": "Cancelar",
-    "confirm": "Confirmar",
-    "yes": "Si",
-    "no": "No",
-    "continue": "Continuar",
-    "search": "Buscar"
+ "appName": "M001",
+ "greeting": "¡Bienvenido, {{name}}!",
+ "common": {
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "yes": "Si",
+  "no": "No",
+  "continue": "Continuar",
+  "search": "Buscar"
+ },
+ "tabNavigator": {
+  "home": "Inicio",
+  "settings": "Configuraciones"
+ },
+ "login": {
+  "title": "Ingresar",
+  "loginButton": "Ingresar",
+  "email": "Correo",
+  "emailPlaceholder": "Correo",
+  "password": "Contraseña",
+  "passwordPlaceholder": "Contraseña",
+  "forgotPassword": "Olvidaste tu contraseña?",
+  "noAccount": "No tienes una cuenta aun?"
+ },
+ "signUp": {
+  "title": "Registrarse",
+  "signUpButton": "Registrarse",
+  "documentType": "Tipo de Documento",
+  "documentTypePlaceholder": "Seleccionar Tipo de Documento",
+  "email": "Correo",
+  "password": "Contraseña",
+  "passwordPlaceholder": "Contraseña",
+  "confirmPassword": "Confirmar Contraseña",
+  "confirmPasswordPlaceholder": "Confirmar Contraseña",
+  "backToLogin": "Ya tienes una cuenta?"
+ },
+ "forgotPassword": {
+  "title": "Recuperar Contraseña",
+  "email": "Correo",
+  "submitButton": "Enviar link de recuperacion",
+  "backToLogin": "Voler a Ingresar"
+ },
+ "home": {
+  "title": "Pantalla de Inicio"
+ },
+ "settings": {
+  "title": "Pantalla de Configuraciones",
+  "language": "Idioma",
+  "switchLanguage": "Cambiar Idioma",
+  "toggleTheme": "Cambia Tema",
+  "logout": "Cerrar Sesion"
+ },
+ "drawer": {
+  "preferences": "Preferencias",
+  "darkTheme": "Modo Oscuro",
+  "language": "Language"
+ },
+ "modals": {
+  "userAccount": {
+   "title": "M001"
   },
-  "tabNavigator": {
-    "home": "Inicio",
-    "settings": "Configuraciones"
-  },
-  "login": {
-    "title": "Ingresar",
-    "loginButton": "Ingresar",
-    "email": "Correo",
-    "emailPlaceholder": "Correo",
-    "password": "Contraseña",
-    "passwordPlaceholder": "Contraseña",
-    "forgotPassword": "Olvidaste tu contraseña?",
-    "noAccount": "No tienes una cuenta aun?"
-  },
-  "signUp": {
-    "title": "Registrarse",
-    "signUpButton": "Registrarse",
-    "email": "Correo",
-    "password": "Contraseña",
-    "passwordPlaceholder": "Password",
-    "confirmPassword": "Confirmar Contraseña",
-    "confirmPasswordPlaceholder": "Confirmar Contraseña",
-    "backToLogin": "Ya tienes una cuenta?"
-  },
-  "forgotPassword": {
-    "title": "Recuperar Contraseña",
-    "email": "Correo",
-    "submitButton": "Enviar link de recuperacion",
-    "backToLogin": "Voler a Ingresar"
-  },
-  "home": {
-    "title": "Pantalla de Inicio"
-  },
-  "settings": {
-    "title": "Pantalla de Configuraciones",
-    "language": "Idioma",
-    "switchLanguage": "Cambiar Idioma",
-    "toggleTheme": "Cambia Tema",
-    "logout": "Cerrar Sesion"
-  },
-  "drawer": {
-    "preferences": "Preferencias",
-    "darkTheme": "Modo Oscuro",
-    "language": "Language"
-  },
-  "modals": {
-    "userAccount": {
-      "title": "M001"
-    },
-    "selectLanguageModal": {
-      "title": "Seleccionar Idioma",
-      "placeholder": "Seleccionar Idioma",
-      "languages": {
-        "en": "Inglés",
-        "es": "Español"
-      }
-    }
+  "selectLanguageModal": {
+   "title": "Seleccionar Idioma",
+   "placeholder": "Seleccionar Idioma",
+   "languages": {
+    "en": "Inglés",
+    "es": "Español"
+   }
   }
+ },
+ "documentTypes": {
+  "id": "Cedula de identidad",
+  "passport": "Pasaporte"
+ }
 }

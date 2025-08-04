@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
@@ -10,6 +10,9 @@ import FormikPasswordInput from '../components/formik/FormikPasswordInput.tsx';
 import {Button, Text} from 'react-native-paper';
 import {useStore} from '../lib/hooks/useStore.ts';
 import {useNavigation} from '@react-navigation/native';
+import FormikSelectInput from '../components/formik/FormikSelectInput.tsx';
+import {SUPPORTED_DOCUMENTS} from '../lib/constants/documents.ts';
+import {SelectInputOptionsProp} from '../lib/types/selectInput.ts';
 
 export default function SignUpScreen() {
   const theme = useTheme();
@@ -59,6 +62,15 @@ export default function SignUpScreen() {
     onSubmit: onSignUpPress,
   });
 
+  const documentOptions: SelectInputOptionsProp[] = useMemo(
+    () =>
+      SUPPORTED_DOCUMENTS.map(doc => ({
+        id: doc.id,
+        value: t(doc.labelKey),
+      })),
+    [t],
+  );
+
   return (
     <View
       style={{
@@ -75,6 +87,14 @@ export default function SignUpScreen() {
             name="email"
             label={t('signUp.email')}
             placeholder={t('signUp.emailPlaceholder')}
+          />
+          <Field
+            component={FormikSelectInput}
+            name="document_type_code"
+            label={t('signUp.documentType')}
+            placeholder={t('signUp.documentTypePlaceholder')}
+            options={documentOptions}
+            showSearch={false}
           />
           <Field
             component={FormikPasswordInput}
