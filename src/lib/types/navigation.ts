@@ -22,6 +22,13 @@ export type AuthStackParamList = {
   Login: undefined;
   SignUp: undefined;
   ForgotPassword: undefined;
+  SignUpStep1: {
+    onNext: () => void;
+  };
+  SignUpStep2: {
+    onNext: () => void;
+    onBack: () => void;
+  };
 };
 
 export type HomeStackParamList = {

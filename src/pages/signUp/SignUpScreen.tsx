@@ -1,0 +1,82 @@
+import React, {useState} from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
+import {useTheme} from '../../lib/hooks/useAppTheme.ts';
+import {useTranslation} from 'react-i18next';
+import useApi from '../../lib/hooks/useApi.ts';
+import {Text} from 'react-native-paper';
+import {useStore} from '../../lib/hooks/useStore.ts';
+import SignUpStep1 from './SignUpStep1.tsx';
+import SignUpStep2 from './SignUpStep2.tsx';
+import ProgressBar from './ProgressBar.tsx';
+
+export default function SignUpScreen() {
+  const [step, setStep] = useState(1);
+  const theme = useTheme();
+  const {t} = useTranslation();
+  const api = useApi();
+  const rootStore = useStore();
+  //const [loading, setLoading] = React.useState(false);
+  const [collectedData, setCollectedData] = useState({});
+
+  const goNext = (data: {}) => {
+    setCollectedData(prev => ({...prev, ...data}));
+    setStep(step + 1);
+  };
+
+  const goBack = () => setStep(step - 1);
+
+  const signUp = (data: {}) => {
+    console.log('datos listos para enviar: ', JSON.stringify(data));
+    //setLoading(true);
+    api.signUp(data).handle({
+      onSuccess: res => {
+        console.log(res);
+        rootStore.userStore.setAuth(res);
+      },
+      onError: err => {
+        console.log('Server replied with an error:', err.response);
+      },
+      //onFinally: () => setLoading(false),
+    });
+  };
+
+  const onSignUpPress = (data: {}) => {
+    const finalData = {...collectedData, ...data};
+    setCollectedData(finalData);
+    signUp(finalData);
+  };
+
+  return (
+    <ScrollView
+      style={{
+        ...styles.container,
+        backgroundColor: theme.colors.background,
+      }}>
+      <Text variant="headlineLarge" style={styles.title}>
+        {t('signUp.title')}
+      </Text>
+      <ProgressBar currentStep={step} total={2} />
+      {step === 1 && <SignUpStep1 onNext={goNext} />}
+      {step === 2 && <SignUpStep2 onNext={onSignUpPress} onBack={goBack} />}
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: '25%',
+  },
+  title: {
+    fontWeight: '700',
+    marginBottom: 32,
+  },
+  fields: {
+    gap: 20,
+  },
+  button: {
+    marginTop: 24,
+    marginBottom: 12,
+  },
+});
