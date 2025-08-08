@@ -18,9 +18,9 @@ export default function SignUpStep1({onNext}: SignUpStep1Props) {
   const initialValues = {
     firstName: 'Juan',
     lastName: 'Perez',
-    email: 'test@davilozo.com',
-    password: 'Password123@',
-    confirmPassword: 'Password123@',
+    email: 'jperez@davilozo.com',
+    password: '12345',
+    confirmPassword: '12345',
     context: 'APP',
   };
 

@@ -7,7 +7,9 @@ import {Text} from 'react-native-paper';
 import {useStore} from '../../lib/hooks/useStore.ts';
 import SignUpStep1 from './SignUpStep1.tsx';
 import SignUpStep2 from './SignUpStep2.tsx';
-import ProgressBar from './ProgressBar.tsx';
+//import ProgressBar from './ProgressBar.tsx';
+//import rootStore from '../../lib/stores/rootStore.ts';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export default function SignUpScreen() {
   const [step, setStep] = useState(1);
@@ -30,12 +32,14 @@ export default function SignUpScreen() {
     //setLoading(true);
     api.signUp(data).handle({
       onSuccess: res => {
-        console.log(res);
         rootStore.userStore.setAuth(res);
       },
       onError: err => {
-        console.log('Server replied with an error:', err.response);
+        //@ts-ignore
+        rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
       },
+      successMessage: t('snackBarMessages.signUpSuccess'),
+      //errorMessage: t('snackBarMessages.signUpError'),
       //onFinally: () => setLoading(false),
     });
   };
@@ -47,18 +51,24 @@ export default function SignUpScreen() {
   };
 
   return (
-    <ScrollView
-      style={{
-        ...styles.container,
-        backgroundColor: theme.colors.background,
-      }}>
-      <Text variant="headlineLarge" style={styles.title}>
-        {t('signUp.title')}
-      </Text>
-      <ProgressBar currentStep={step} total={2} />
-      {step === 1 && <SignUpStep1 onNext={goNext} />}
-      {step === 2 && <SignUpStep2 onNext={onSignUpPress} onBack={goBack} />}
-    </ScrollView>
+    <KeyboardAwareScrollView
+      contentContainerStyle={[
+        styles.container,
+        {backgroundColor: theme.colors.background},
+      ]}
+      enableOnAndroid={true}
+      extraScrollHeight={160}
+      keyboardOpeningTime={0}
+      keyboardShouldPersistTaps="handled">
+      <ScrollView>
+        <Text variant="headlineLarge" style={styles.title}>
+          {t('signUp.title')}
+        </Text>
+        {/*<ProgressBar currentStep={step} total={2} />*/}
+        {step === 1 && <SignUpStep1 onNext={goNext} />}
+        {step === 2 && <SignUpStep2 onNext={onSignUpPress} onBack={goBack} />}
+      </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -71,12 +81,5 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: '700',
     marginBottom: 32,
-  },
-  fields: {
-    gap: 20,
-  },
-  button: {
-    marginTop: 24,
-    marginBottom: 12,
   },
 });

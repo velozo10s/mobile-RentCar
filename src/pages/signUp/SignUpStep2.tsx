@@ -9,6 +9,7 @@ import {SUPPORTED_DOCUMENTS} from '../../lib/constants/documents.ts';
 import {SelectInputOptionsProp} from '../../lib/types/selectInput.ts';
 import FormikTextInput from '../../components/formik/FormikTextInput.tsx';
 import FormikPhoneInput from '../../components/formik/FormikPhoneInput.tsx';
+import FormikEmailInput from '../../components/formik/FormikEmailInput.tsx';
 
 interface SignUpStep2Props {
   onNext?: (data: {}) => void;
@@ -21,11 +22,11 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
 
   const initialValues = {
     documentType: 'CI',
-    documentNumber: '1229224',
+    documentNumber: '1111111',
     phoneNumber: '+595982471257',
     nationalityCode: 'PY',
     birthDate: '1970-01-01',
-    username: 'zulma',
+    username: 'jperez',
   };
 
   const validationSchema = Yup.object({
@@ -109,24 +110,24 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
           placeholder={t('signUp.birthDatePlaceholder')}
         />
         <Field
-          component={FormikTextInput}
+          component={FormikEmailInput}
           name="username"
           label={t('signUp.username')}
           placeholder={t('signUp.usernamePlaceholder')}
         />
-        <View style={styles.buttons}>
+        <View style={styles.buttonRow}>
           <Button
             mode="contained"
             onPress={onBackPress}
             loading={loading}
-            style={styles.button}>
+            style={styles.flexButton}>
             {t('common.back')}
           </Button>
           <Button
             mode="contained"
             onPress={onSignUpPress}
             loading={loading}
-            style={styles.button}>
+            style={styles.flexButton}>
             {t('common.next')}
           </Button>
         </View>
@@ -147,6 +148,14 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 24,
     marginBottom: 12,
-    marginHorizontal: 20,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: 24,
+  },
+  flexButton: {
+    flex: 1,
+    marginHorizontal: 4,
   },
 });

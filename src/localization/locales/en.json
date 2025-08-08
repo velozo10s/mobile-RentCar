@@ -18,8 +18,8 @@
  "login": {
   "title": "Login",
   "loginButton": "Log in",
-  "email": "Email",
-  "emailPlaceholder": "Email",
+  "user": "User",
+  "userPlaceholder": "User",
   "password": "Password",
   "passwordPlaceholder": "Password",
   "forgotPassword": "Forgot password?",
@@ -105,6 +105,8 @@
  "snackBarMessages": {
   "networkError": "Network error. Please check your connection or contact support",
   "loginError": "Could not log in, try again later",
-  "loginSuccess": "Logged in! :D"
+  "loginSuccess": "Logged in! :D",
+  "signUpSuccess": "SignUp complete! :D",
+  "signUpError": "Could not sign up, try again later"
  }
 }

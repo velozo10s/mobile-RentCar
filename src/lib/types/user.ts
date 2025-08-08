@@ -2,12 +2,12 @@ export interface User {
   id: number;
   username: string;
   email: string;
-  is_email_validated: boolean;
+  isEmailValidated: boolean;
   role: string;
-  document_type: string;
-  document_number: string;
+  documentType: string;
+  documentNumber: string;
   name: string;
-  birth_date: string;
-  phone_number: string;
-  is_active: boolean;
+  birthDate: string;
+  phoneNumber: string;
+  isActive: boolean;
 }

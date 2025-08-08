@@ -26,24 +26,25 @@ export default function LoginScreen() {
         rootStore.userStore.setAuth(res);
       },
       onError: err => {
-        console.log('Server replied with an error:', err.response);
+        //@ts-ignore
+        rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
       },
       successMessage: t('snackBarMessages.loginSuccess'),
-      errorMessage: t('snackBarMessages.loginError'),
+      //errorMessage: t('snackBarMessages.loginError'),
       onFinally: () => setLoading(false),
     });
   };
 
   const initialValues = {
-    user: 'zulma@rentcar.com',
-    password: '12345',
-    context: 'WEB',
+    user: '',
+    password: '',
+    context: 'APP',
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string()
+    user: Yup.string()
       // .email('Invalid email')
-      .required('Email is a required field'),
+      .required('User is a required field'),
     password: Yup.string().required('Password is a required field'),
   });
 
@@ -71,8 +72,8 @@ export default function LoginScreen() {
           <Field
             component={FormikEmailInput}
             name="user"
-            label={t('login.email')}
-            placeholder={t('login.emailPlaceholder')}
+            label={t('login.user')}
+            placeholder={t('login.userPlaceholder')}
           />
           <Field
             component={FormikPasswordInput}

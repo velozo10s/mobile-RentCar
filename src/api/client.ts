@@ -44,6 +44,7 @@ class RequestWrapper<T> {
       .catch((err: AxiosError) => {
         // HTTP error (server responded with 4xx/5xx)
         if (err.response) {
+          //rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
           if (opts.errorMessage) {
             rootStore.uiStore.showSnackbar(opts.errorMessage, 'danger');
           }
