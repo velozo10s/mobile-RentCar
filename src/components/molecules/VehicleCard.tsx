@@ -11,7 +11,7 @@ type Props = {
 
 const VehicleCard = memo(({vehicle, onPress}: Props) => {
   const dayPrice = Number(vehicle.price_per_day);
-  const hourPrice = Number(vehicle.price_per_hour);
+  // const hourPrice = Number(vehicle.price_per_hour);
   const {t} = useTranslation();
 
   return (
@@ -26,25 +26,25 @@ const VehicleCard = memo(({vehicle, onPress}: Props) => {
           {vehicle.brand_name} {vehicle.model} • {vehicle.year}
         </Text>
         <Text variant="bodyMedium" style={styles.subText}>
-          {vehicle.type_name} • {vehicle.transmission} • {vehicle.seats}{' '}
-          {t('listVehicles.seats')}
+          {t(`vehicles.type.${vehicle.type_name}`)} •{' '}
+          {t(`vehicles.transmission.${vehicle.transmission}`)}
         </Text>
 
         <View style={styles.chipContainer}>
           <Chip compact>{`$${dayPrice.toFixed(2)}${t(
-            'listVehicles.perDay',
+            'vehicles.perDay',
           )}`}</Chip>
-          <Chip compact>{`$${hourPrice.toFixed(2)}${t(
-            'listVehicles.perHour',
-          )}`}</Chip>
+          {/*<Chip compact>{`$${hourPrice.toFixed(2)}${t(*/}
+          {/*  'listVehicles.perHour',*/}
+          {/*)}`}</Chip>*/}
           <Chip compact>{vehicle.color}</Chip>
-          <Chip compact>{vehicle.fuel_type}</Chip>
+          <Chip compact>{t(`vehicles.fuel.${vehicle.fuel_type}`)}</Chip>
         </View>
       </Card.Content>
 
       <Card.Actions style={styles.cardActions}>
         <Button mode="contained-tonal" onPress={onPress}>
-          {t('listVehicles.viewDetails')}
+          {t('vehicles.viewDetails')}
         </Button>
       </Card.Actions>
     </Card>

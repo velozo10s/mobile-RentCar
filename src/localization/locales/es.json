@@ -73,14 +73,31 @@
  "home": {
   "title": "Pantalla de Inicio"
  },
- "listVehicles": {
+ "vehicles": {
   "search": "Buscar vehiculo",
   "newest": "Mas nuevos",
   "pricePerDay": "Precio/dia",
   "viewDetails": "Ver detalles",
   "perDay": "/dia",
   "perHour": "/hora",
-  "seats": "asientos"
+  "seats": "asientos",
+  "transmission": {
+   "automatic": "automático",
+   "manual": "manual"
+  },
+  "type": {
+   "Sedan": "Sedán",
+   "SUV": "SUV",
+   "Truck": "Camión ligero",
+   "Van": "Furgoneta",
+   "Electric": "Eléctrico"
+  },
+  "fuel": {
+   "petrol": "gasolina",
+   "diesel": "diésel"
+  },
+  "mileage": "kilometraje",
+  "bookNow": "Solicitalo ahora!"
  },
  "settings": {
   "title": "Pantalla de Configuraciones",

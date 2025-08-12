@@ -94,8 +94,8 @@ export default function HomeScreen() {
         value={sort}
         onValueChange={v => setSort(v as any)}
         buttons={[
-          {value: 'created_at', label: t('listVehicles.newest')},
-          {value: 'price_per_day', label: t('listVehicles.pricePerDay')},
+          {value: 'created_at', label: t('vehicles.newest')},
+          {value: 'price_per_day', label: t('vehicles.pricePerDay')},
         ]}
         style={{width: '85%'}}
       />
@@ -124,7 +124,7 @@ export default function HomeScreen() {
       <MainSearchBar
         text={searchText}
         onChangeText={setSearchText}
-        placeholder={t('listVehicles.search')}
+        placeholder={t('vehicles.search')}
       />
       <View
         style={{...styles.container, backgroundColor: theme.colors.background}}>
@@ -135,8 +135,7 @@ export default function HomeScreen() {
             <VehicleCard
               vehicle={item}
               onPress={() => {
-                console.log('holaaaaaaaaaaa');
-                //nav.navigate('VehicleDetails', { id: item.id });
+                navigation.navigate('VehicleDetails', {id: item.id});
               }}
             />
           )}
