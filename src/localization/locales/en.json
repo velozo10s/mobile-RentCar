@@ -73,6 +73,15 @@
  "home": {
   "title": "Home Screen"
  },
+ "listVehicles": {
+  "search": "Search vehicle",
+  "newest": "Newest",
+  "pricePerDay": "Price/day",
+  "viewDetails": "View details",
+  "perDay": "/day",
+  "perHour": "/hr",
+  "seats": "seats"
+ },
  "settings": {
   "title": "Settings Screen",
   "language": "Language",

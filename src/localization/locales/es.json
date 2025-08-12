@@ -73,6 +73,15 @@
  "home": {
   "title": "Pantalla de Inicio"
  },
+ "listVehicles": {
+  "search": "Buscar vehiculo",
+  "newest": "Mas nuevos",
+  "pricePerDay": "Precio/dia",
+  "viewDetails": "Ver detalles",
+  "perDay": "/dia",
+  "perHour": "/hora",
+  "seats": "asientos"
+ },
  "settings": {
   "title": "Pantalla de Configuraciones",
   "language": "Idioma",

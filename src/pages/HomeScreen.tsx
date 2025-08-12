@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
@@ -8,10 +8,11 @@ import MainFab from '../components/molecules/fab.tsx';
 export default function HomeScreen() {
   const theme = useTheme();
   const {t} = useTranslation();
+  const [searchText, setSearchText] = useState('');
 
   return (
     <>
-      <MainSearchBar />
+      <MainSearchBar text={searchText} onChangeText={setSearchText} />
       <View
         style={{
           ...styles.container,

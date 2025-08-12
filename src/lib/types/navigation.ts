@@ -33,6 +33,7 @@ export type AuthStackParamList = {
 
 export type HomeStackParamList = {
   Home: undefined;
+  VehicleList: undefined;
 };
 
 export type SettingsStackParamList = {

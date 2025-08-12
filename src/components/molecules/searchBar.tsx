@@ -1,3 +1,4 @@
+// components/molecules/MainSearchBar.tsx
 import {useState} from 'react';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -8,25 +9,27 @@ import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import {SearchBarNavProp} from '../../lib/types/navigation.ts';
 import UserAccountModal from '../organisms/userAccountModal.tsx';
 
-const MainSearchBar = () => {
+type Props = {
+  text: string;
+  onChangeText: (t: string) => void;
+  placeholder?: string;
+};
+
+const MainSearchBar = ({text, onChangeText, placeholder}: Props) => {
   const {t} = useTranslation();
   const theme = useTheme();
   const navigation = useNavigation<SearchBarNavProp>();
-  const [searchQuery, setSearchQuery] = useState('');
   const [userAccountModalOpen, setUserAccountModalOpen] = useState(false);
 
   return (
     <View
-      style={{
-        backgroundColor: theme.colors.background,
-        paddingHorizontal: 16,
-      }}>
+      style={{backgroundColor: theme.colors.background, paddingHorizontal: 16}}>
       <Searchbar
         mode="bar"
-        placeholder={t('common.search')}
-        onChangeText={setSearchQuery}
-        value={searchQuery}
-        icon={'menu'}
+        placeholder={placeholder ?? t('common.search')}
+        value={text}
+        onChangeText={onChangeText} // single source of truth
+        icon="menu"
         onIconPress={() => navigation.openDrawer()}
         right={props => (
           <Avatar.Image
@@ -38,9 +41,7 @@ const MainSearchBar = () => {
         )}
       />
       <UserAccountModal
-        onDismiss={() => {
-          setUserAccountModalOpen(false);
-        }}
+        onDismiss={() => setUserAccountModalOpen(false)}
         isVisible={userAccountModalOpen}
       />
     </View>
