@@ -97,7 +97,8 @@
    "diesel": "diesel"
   },
   "mileage": "mileage",
-  "bookNow": "Book Now!"
+  "bookNow": "Book Now!",
+  "confirmReservation": "Confirm Reservation"
  },
  "settings": {
   "title": "Settings Screen",

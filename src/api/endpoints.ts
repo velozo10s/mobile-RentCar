@@ -16,10 +16,14 @@ export const forgotPassword = (data: {[key: string]: any}) => {
   return wrapRequest(client.post('forgot_password_code', data));
 };
 
+export const createReservation = (data: {[key: string]: any}) => {
+  return wrapRequest(client.post('/reservations/', data));
+};
+
 export const listVehicles = (params: {[key: string]: any}) => {
   return wrapRequest(client.get('/vehicles', {params}));
 };
 
-export function getVehicle(id: number) {
+export const getVehicle = (id: number) => {
   return wrapRequest(client.get(`/vehicles/${id}`));
-}
+};

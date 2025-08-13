@@ -97,7 +97,8 @@
    "diesel": "diésel"
   },
   "mileage": "kilometraje",
-  "bookNow": "Solicitalo ahora!"
+  "bookNow": "Solicitalo ahora!",
+  "confirmReservation": "Confirmar Reserva"
  },
  "settings": {
   "title": "Pantalla de Configuraciones",
