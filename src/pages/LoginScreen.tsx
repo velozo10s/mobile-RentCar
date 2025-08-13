@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Keyboard, StyleSheet, View} from 'react-native';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
 import useApi from '../lib/hooks/useApi.ts';
@@ -23,14 +23,11 @@ export default function LoginScreen() {
     setLoading(true);
     api.login(data).handle({
       onSuccess: res => {
+        console.log('res ===>', res);
         rootStore.userStore.setAuth(res);
       },
-      onError: err => {
-        //@ts-ignore
-        rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
-      },
       successMessage: t('snackBarMessages.loginSuccess'),
-      //errorMessage: t('snackBarMessages.loginError'),
+      errorMessage: t('snackBarMessages.loginError'),
       onFinally: () => setLoading(false),
     });
   };
@@ -50,6 +47,7 @@ export default function LoginScreen() {
 
   const onLoginPress = () => {
     login(formik.values);
+    Keyboard.dismiss();
   };
 
   const formik = useFormik({

@@ -28,6 +28,11 @@ export type HandleOptions<T> = {
   successMessage?: string;
   errorMessage?: string;
   onFinally?: () => void;
+  showBackendMessage?: boolean;
+};
+
+export type ApiErrorData = {
+  localKey?: string;
 };
 
 class RequestWrapper<T> {
@@ -41,14 +46,19 @@ class RequestWrapper<T> {
         }
         opts.onSuccess?.(res.data);
       })
-      .catch((err: AxiosError) => {
+      .catch((err: AxiosError<ApiErrorData>) => {
         // HTTP error (server responded with 4xx/5xx)
-        if (err.response) {
+        if (!!err.response) {
           //rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
           if (opts.errorMessage) {
             rootStore.uiStore.showSnackbar(opts.errorMessage, 'danger');
+          } else if (err && err.response?.data?.localKey) {
+            rootStore.uiStore.showSnackbar(
+              i18n.t(err.response?.data?.localKey),
+              'danger',
+            );
+            opts.onError?.(err);
           }
-          opts.onError?.(err);
         } else {
           // Network / no-response error
           rootStore.uiStore.showSnackbar(
