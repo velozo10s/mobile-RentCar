@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {FormikSelectInputProps} from '../../lib/types/formik.ts';
 import {DatePickerInput} from 'react-native-paper-dates';
-import {en, registerTranslation} from 'react-native-paper-dates';
+import {en, es, registerTranslation} from 'react-native-paper-dates';
+import i18n from 'i18next';
 
 export default function FormikDateInput(props: FormikSelectInputProps) {
   const {
@@ -15,8 +16,8 @@ export default function FormikDateInput(props: FormikSelectInputProps) {
     style,
     ...rest
   } = props;
-
   registerTranslation('en', en);
+  registerTranslation('es', es);
 
   // seed the initial value if provided
   useEffect(() => {
@@ -26,21 +27,8 @@ export default function FormikDateInput(props: FormikSelectInputProps) {
   }, []);
 
   return (
-    // <SelectInput
-    //   value={field.value}
-    //   onChange={val => {
-    //     form.setFieldValue(field.name, val);
-    //     form.setFieldTouched(field.name, true);
-    //   }}
-    //   label={label}
-    //   placeholder={placeholder}
-    //   options={options}
-    //   onSearch={onSearch}
-    //   style={style}
-    //   {...rest}
-    // />
     <DatePickerInput
-      locale="en"
+      locale={i18n.language} // so it follows your localization
       label={label}
       placeholder={placeholder}
       value={field.value}
@@ -49,6 +37,7 @@ export default function FormikDateInput(props: FormikSelectInputProps) {
         form.setFieldTouched(field.name, true);
       }}
       inputMode="end"
+      mode={'outlined'}
       style={{
         marginTop: 10,
         marginBottom: -30,

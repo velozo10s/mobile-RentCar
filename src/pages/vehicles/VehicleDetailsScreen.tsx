@@ -9,7 +9,7 @@ import useApi from '../../lib/hooks/useApi.ts';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import VehicleImageCarousel from '../../components/molecules/VehicleImageCaruosel.tsx';
 
-type RouteParams = {id: number};
+type RouteParams = {id: number; startAt?: Date; endAt?: Date};
 
 export default function VehicleDetailsScreen() {
   const {params} = useRoute<{key: string; name: string; params: RouteParams}>();
@@ -102,9 +102,7 @@ export default function VehicleDetailsScreen() {
       <Button
         mode="contained"
         style={{marginTop: 24}}
-        onPress={() =>
-          nav.navigate('ReservationForm', {vehicleId: vehicle.id})
-        }>
+        onPress={() => nav.navigate('ReservationForm', {id: vehicle.id})}>
         {t('vehicles.bookNow')}
       </Button>
     </ScrollView>

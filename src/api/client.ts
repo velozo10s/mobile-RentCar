@@ -49,7 +49,6 @@ class RequestWrapper<T> {
       .catch((err: AxiosError<ApiErrorData>) => {
         // HTTP error (server responded with 4xx/5xx)
         if (!!err.response) {
-          //rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
           if (opts.errorMessage) {
             rootStore.uiStore.showSnackbar(opts.errorMessage, 'danger');
           } else if (err && err.response?.data?.localKey) {
@@ -57,8 +56,8 @@ class RequestWrapper<T> {
               i18n.t(err.response?.data?.localKey),
               'danger',
             );
-            opts.onError?.(err);
           }
+          opts.onError?.(err);
         } else {
           // Network / no-response error
           rootStore.uiStore.showSnackbar(

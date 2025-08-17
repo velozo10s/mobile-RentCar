@@ -27,3 +27,11 @@ export const listVehicles = (params: {[key: string]: any}) => {
 export const getVehicle = (id: number) => {
   return wrapRequest(client.get(`/vehicles/${id}`));
 };
+
+export const getVehicleBrands = () => {
+  return wrapRequest(client.get(`/vehicles/brands`));
+};
+
+export const getVehicleTypes = () => {
+  return wrapRequest(client.get(`/vehicles/types`));
+};

@@ -35,7 +35,7 @@ export type HomeStackParamList = {
   Home: undefined;
   VehicleList: undefined;
   VehicleDetails: {id: number};
-  ReservationForm: {vehicleId: number};
+  ReservationForm: {id: number};
 };
 
 export type SettingsStackParamList = {

@@ -21,3 +21,13 @@ export type Vehicle = {
   type_name: string;
   primary_image: string;
 };
+
+export type VehicleListFilters = {
+  q?: string;
+  sort: 'created_at' | 'price_per_day';
+  order: 'asc' | 'desc';
+  brand_id?: number;
+  type_id?: number;
+  startAt?: Date;
+  endAt?: Date;
+};

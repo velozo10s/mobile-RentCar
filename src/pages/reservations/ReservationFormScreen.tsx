@@ -12,7 +12,7 @@ import FormikDateInput from '../../components/formik/FormikDateInput.tsx';
 import FormikTextInput from '../../components/formik/FormikTextInput.tsx';
 import rootStore from '../../lib/stores/rootStore.ts';
 
-type RouteParams = {vehicleId: number};
+type RouteParams = {id: number; startAt?: Date; endAt?: Date};
 
 export default function ReservationFormScreen() {
   const {params} = useRoute<{key: string; name: string; params: RouteParams}>();
@@ -24,8 +24,8 @@ export default function ReservationFormScreen() {
   const theme = useTheme();
 
   const confirmReservation = (data: {
-    startAt: Date;
-    endAt: Date;
+    startAt: Date | undefined;
+    endAt: Date | undefined;
     vehicleIds: Number[];
     note: string;
   }) => {
@@ -57,9 +57,9 @@ export default function ReservationFormScreen() {
   };
 
   const initialValues = {
-    startAt: new Date(),
-    endAt: new Date(),
-    vehicleIds: [params.vehicleId],
+    startAt: params.startAt ? params.startAt : new Date(),
+    endAt: params.endAt,
+    vehicleIds: [params.id],
     note: '',
   };
 
@@ -119,14 +119,14 @@ export default function ReservationFormScreen() {
           <Field
             component={FormikDateInput}
             name="startAt"
-            label="Start Date"
-            placeholder="Start Date"
+            label={t('vehicles.startDate')}
+            placeholder={t('vehicles.startDate')}
           />
           <Field
             component={FormikDateInput}
             name="endAt"
-            label="End Date"
-            placeholder="End Date"
+            label={t('vehicles.endDate')}
+            placeholder={t('vehicles.endDate')}
           />
           <Field
             component={FormikTextInput}

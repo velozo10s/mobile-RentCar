@@ -9,7 +9,10 @@
   "continue": "Continuar",
   "search": "Buscar",
   "next": "Siguiente",
-  "back": "Atras"
+  "back": "Atras",
+  "any": "Todos",
+  "reset": "Limpiar",
+  "apply": "aplicar"
  },
  "tabNavigator": {
   "home": "Inicio",
@@ -75,12 +78,12 @@
  },
  "vehicles": {
   "search": "Buscar vehiculo",
-  "newest": "Mas nuevos",
-  "pricePerDay": "Precio/dia",
   "viewDetails": "Ver detalles",
   "perDay": "/dia",
   "perHour": "/hora",
   "seats": "asientos",
+  "startDate": "Fecha de inicio",
+  "endDate": "Fecha final",
   "transmission": {
    "automatic": "automático",
    "manual": "manual"
@@ -97,6 +100,19 @@
    "diesel": "diésel"
   },
   "mileage": "kilometraje",
+  "filters": {
+   "filters": "Filtros",
+   "sortBy": "Ordenar por",
+   "orderAsc": "Ascendente",
+   "orderDesc": "Descendente",
+   "brand": "Marca",
+   "type": "Tipo",
+   "dates": "Fechas",
+   "newest": "Mas nuevos",
+   "pricePerDay": "Precio/dia",
+   "dateHint": "Seleccione ambas fechas para filtrar por disponibles.",
+   "dateError": "Fecha de inicio y fin deben ser validos."
+  },
   "bookNow": "Solicitalo ahora!",
   "confirmReservation": "Confirmar Reserva"
  },
@@ -138,6 +154,9 @@
  },
  "backendRes": {
   "successLogin": "Sesion iniciada! :D",
-  "badReqLogin": "Email o Contraseña incorrecta, vuelva a intentar"
+  "badReqLogin": "Email o Contraseña incorrecta, vuelva a intentar",
+  "noCredentials": "Usuario y contraseña son requeridos.",
+  "incorrectPassword": "Contraseña incorrecta",
+  "unauthorized": "Unauthorized"
  }
 }
