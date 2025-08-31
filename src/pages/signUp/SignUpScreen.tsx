@@ -34,13 +34,7 @@ export default function SignUpScreen() {
       onSuccess: res => {
         rootStore.userStore.setAuth(res);
       },
-      onError: err => {
-        //@ts-ignore
-        rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
-      },
       successMessage: t('snackBarMessages.signUpSuccess'),
-      //errorMessage: t('snackBarMessages.signUpError'),
-      //onFinally: () => setLoading(false),
     });
   };
 

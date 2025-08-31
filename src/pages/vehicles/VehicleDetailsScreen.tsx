@@ -9,7 +9,7 @@ import useApi from '../../lib/hooks/useApi.ts';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import VehicleImageCarousel from '../../components/molecules/VehicleImageCaruosel.tsx';
 
-type RouteParams = {id: number; startAt?: Date; endAt?: Date};
+type RouteParams = {id: number; startAt?: number; endAt?: number};
 
 export default function VehicleDetailsScreen() {
   const {params} = useRoute<{key: string; name: string; params: RouteParams}>();
@@ -26,22 +26,6 @@ export default function VehicleDetailsScreen() {
       onSuccess: res => setVehicle(res),
       onFinally: () => setLoading(false),
     });
-    // api.listVehicles(params).handle({
-    //   onSuccess: res => {
-    //     setHasMore(res.length === PER_PAGE);
-    //     setPage(nextPage);
-    //     setData(prev => (replace ? res : [...prev, ...res]));
-    //   },
-    //   onError: err => {
-    //     setLoading(false);
-    //     setRefreshing(false);
-    //     //@ts-ignore
-    //     rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
-    //   },
-    //   onFinally: () => {
-    //     setLoading(false);
-    //     setRefreshing(false);
-    //   },
   }, [params.id]);
 
   if (loading) {
@@ -102,7 +86,13 @@ export default function VehicleDetailsScreen() {
       <Button
         mode="contained"
         style={{marginTop: 24}}
-        onPress={() => nav.navigate('ReservationForm', {id: vehicle.id})}>
+        onPress={() =>
+          nav.navigate('ReservationForm', {
+            id: vehicle.id,
+            startAt: params.startAt ?? null,
+            endAt: params.endAt ?? null,
+          })
+        }>
         {t('vehicles.bookNow')}
       </Button>
     </ScrollView>

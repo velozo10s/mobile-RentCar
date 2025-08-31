@@ -22,7 +22,6 @@ import {VehicleListFilters} from '../../lib/types/vehicles.ts';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import useApi from '../../lib/hooks/useApi.ts';
 import i18n from 'i18next';
-import rootStore from '../../lib/stores/rootStore.ts';
 
 type Types = {
   id: number;
@@ -83,11 +82,6 @@ export default function VehicleFiltersSheet({
       onSuccess: res => {
         setTypes(res);
       },
-      onError: err => {
-        setLoading(false);
-        //@ts-ignore
-        rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
-      },
       onFinally: () => {
         setLoading(false);
       },
@@ -98,11 +92,6 @@ export default function VehicleFiltersSheet({
     api.getVehicleBrands().handle({
       onSuccess: res => {
         setBrands(res);
-      },
-      onError: err => {
-        setLoading(false);
-        //@ts-ignore
-        rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
       },
       onFinally: () => {
         setLoading(false);
@@ -138,15 +127,6 @@ export default function VehicleFiltersSheet({
         <Text variant="titleMedium" style={{marginBottom: 20}}>
           {t('vehicles.filters.filters')}
         </Text>
-
-        {/*<TextInput*/}
-        {/*  label={t('common.search')}*/}
-        {/*  value={local.q ?? ''}*/}
-        {/*  onChangeText={t => setLocal(prev => ({...prev, q: t}))}*/}
-        {/*  left={<TextInput.Icon icon="magnify" />}*/}
-        {/*  style={{marginBottom: 12}}*/}
-        {/*  mode="outlined"*/}
-        {/*/>*/}
 
         {/* Sort + Order */}
         <Text style={{marginBottom: 6}}>{t('vehicles.filters.sortBy')}</Text>

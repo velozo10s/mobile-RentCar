@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Text} from 'react-native-paper';
 import {useRoute} from '@react-navigation/native';
 import useApi from '../../lib/hooks/useApi.ts';
@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import FormikDateInput from '../../components/formik/FormikDateInput.tsx';
 import FormikTextInput from '../../components/formik/FormikTextInput.tsx';
 import rootStore from '../../lib/stores/rootStore.ts';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 type RouteParams = {id: number; startAt?: Date; endAt?: Date};
 
@@ -31,29 +32,16 @@ export default function ReservationFormScreen() {
   }) => {
     setLoading(true);
     api.createReservation(data).handle({
-      onSuccess: res => {
-        rootStore.uiStore.showSnackbar('Success!!!', 'success');
+      onSuccess: () => {
+        rootStore.uiStore.showSnackbar(
+          t('snackBarMessages.bookSuccess'),
+          'success',
+          5000,
+        );
         navigation.navigate('VehicleList');
       },
-      onError: err => {
-        //@ts-ignore
-        rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
-      },
-      successMessage: 'Se ha registrado su reserva.',
       onFinally: () => setLoading(false),
     });
-    // api.login(data).handle({
-    //   onSuccess: res => {
-    //     //.userStore.setAuth(res);
-    //   },
-    //   onError: err => {
-    //     //@ts-ignore
-    //     //rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
-    //   },
-    //   successMessage: t('snackBarMessages.loginSuccess'),
-    //   //errorMessage: t('snackBarMessages.loginError'),
-    //   onFinally: () => setLoading(false),
-    // });
   };
 
   const initialValues = {
@@ -80,71 +68,51 @@ export default function ReservationFormScreen() {
   });
 
   return (
-    <View
-      style={{...styles.container, backgroundColor: theme.colors.background}}>
-      <Text variant="titleLarge" style={styles.title}>
-        Book your reservation
-      </Text>
-      {/*<DatePickerInput*/}
-      {/*  locale="en"*/}
-      {/*  label="Start Date"*/}
-      {/*  value={startAt}*/}
-      {/*  onChange={d => setStartAt(d)}*/}
-      {/*  inputMode="start"*/}
-      {/*/>*/}
-      {/*<DatePickerInput*/}
-      {/*  locale="en"*/}
-      {/*  label="End Date"*/}
-      {/*  value={endAt}*/}
-      {/*  onChange={d => setEndAt(d)}*/}
-      {/*  inputMode="end"*/}
-      {/*/>*/}
-      {/*<TextInput*/}
-      {/*  label="Note"*/}
-      {/*  value={note}*/}
-      {/*  onChangeText={setNote}*/}
-      {/*  style={{marginTop: 16}}*/}
-      {/*  multiline*/}
-      {/*/>*/}
-      {/*<Button*/}
-      {/*  mode="contained"*/}
-      {/*  style={{marginTop: 24}}*/}
-      {/*  onPress={handleSubmit}*/}
-      {/*  loading={loading}*/}
-      {/*  disabled={!startAt || !endAt || loading}>*/}
-      {/*  Confirm Reservation*/}
-      {/*</Button>*/}
-      <FormikProvider value={formik}>
-        <View style={styles.fields}>
-          <Field
-            component={FormikDateInput}
-            name="startAt"
-            label={t('vehicles.startDate')}
-            placeholder={t('vehicles.startDate')}
-          />
-          <Field
-            component={FormikDateInput}
-            name="endAt"
-            label={t('vehicles.endDate')}
-            placeholder={t('vehicles.endDate')}
-          />
-          <Field
-            component={FormikTextInput}
-            name="note"
-            label="Note"
-            placeholder="Note"
-          />
-          <Button
-            mode="contained"
-            onPress={onConfirmPress}
-            disabled={loading}
-            loading={loading}
-            style={styles.button}>
-            {!loading && t('vehicles.confirmReservation')}
-          </Button>
-        </View>
-      </FormikProvider>
-    </View>
+    <KeyboardAwareScrollView
+      contentContainerStyle={[
+        styles.container,
+        {backgroundColor: theme.colors.background},
+      ]}
+      enableOnAndroid={true}
+      extraScrollHeight={20}
+      keyboardOpeningTime={0}
+      keyboardShouldPersistTaps="handled">
+      <ScrollView>
+        <Text variant="titleLarge" style={styles.title}>
+          Book your reservation
+        </Text>
+        <FormikProvider value={formik}>
+          <View style={styles.fields}>
+            <Field
+              component={FormikDateInput}
+              name="startAt"
+              label={t('vehicles.startDate')}
+              placeholder={t('vehicles.startDate')}
+            />
+            <Field
+              component={FormikDateInput}
+              name="endAt"
+              label={t('vehicles.endDate')}
+              placeholder={t('vehicles.endDate')}
+            />
+            <Field
+              component={FormikTextInput}
+              name="note"
+              label="Note"
+              placeholder="Note"
+            />
+            <Button
+              mode="contained"
+              onPress={onConfirmPress}
+              disabled={loading}
+              loading={loading}
+              style={styles.button}>
+              {!loading && t('vehicles.confirmReservation')}
+            </Button>
+          </View>
+        </FormikProvider>
+      </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 

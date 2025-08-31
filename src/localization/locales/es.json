@@ -97,7 +97,8 @@
   },
   "fuel": {
    "petrol": "gasolina",
-   "diesel": "diésel"
+   "diesel": "diésel",
+   "electric": "electrico"
   },
   "mileage": "kilometraje",
   "filters": {
@@ -147,16 +148,37 @@
  },
  "snackBarMessages": {
   "networkError": "Error de red. Por favor, comprueba tu conexión o contacta con soporte",
+  "generalError": "Algo ha salido mal. Por favor reintente o contacte con soporte",
   "loginError": "No se pudo iniciar sesión, inténtalo de nuevo más tarde",
   "signUpSuccess": "¡Usuario registrado con exito! :D",
   "signUpError": "No se pudo registrar el usuario, inténtalo de nuevo más tarde",
-  "loginSuccess": "¡Sesión iniciada! :D"
+  "loginSuccess": "Bienvenido {{username}} :D",
+  "bookSuccess": "¡Tu solicitud de reserva de coche se ha enviado con éxito!"
  },
  "backendRes": {
   "successLogin": "Sesion iniciada! :D",
   "badReqLogin": "Email o Contraseña incorrecta, vuelva a intentar",
   "noCredentials": "Usuario y contraseña son requeridos.",
   "incorrectPassword": "Contraseña incorrecta",
-  "unauthorized": "Unauthorized"
+  "unauthorized": "Unauthorized",
+  "forbidden": "No permitido: No cuenta con los permisos suficientes.",
+  "userNotFound": "Usuario no encontrado.",
+  "signUp": {
+   "noRequiredFields": "Faltan campos obligatorios.",
+   "alreadyExists": "El usuario/correo no esta disponible."
+  },
+  "reservation": {
+   "noRequiredFields": "Faltan campos obligatorios.",
+   "vehiclesNotFound": "Uno o mas vehiculos no fueron encontrados.",
+   "inactive": "Uno o mas vehiculos estan inactivos.",
+   "confirmed": "Uno o mas vehiculos no se encuentran disponibles.",
+   "error": "No se pudo registrar la solicitud, inténtalo de nuevo más tarde",
+   "reservationNotFound": "No se ha encontrado la reserva.",
+   "invalidId": "Identificador invalido.",
+   "invalidStatus": "Filtro de estado invalido.",
+   "invalidCustomerStatus": "Identificador del usuario invalido.",
+   "notOwner": "Esta reserva no es tuya.",
+   "cannotCancelled": "No se puede cancelar despues de la fecha de inicio."
+  }
  }
 }

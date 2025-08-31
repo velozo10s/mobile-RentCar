@@ -1,5 +1,5 @@
 import React from 'react';
-import {Keyboard, StyleSheet, View} from 'react-native';
+import {Keyboard, ScrollView, StyleSheet, View} from 'react-native';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
 import useApi from '../lib/hooks/useApi.ts';
@@ -10,6 +10,8 @@ import FormikPasswordInput from '../components/formik/FormikPasswordInput.tsx';
 import {Button, Text} from 'react-native-paper';
 import {useStore} from '../lib/hooks/useStore.ts';
 import {useNavigation} from '../lib/hooks/useNavigation.ts';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import i18n from 'i18next';
 
 export default function LoginScreen() {
   const theme = useTheme();
@@ -23,11 +25,14 @@ export default function LoginScreen() {
     setLoading(true);
     api.login(data).handle({
       onSuccess: res => {
-        console.log('res ===>', res);
         rootStore.userStore.setAuth(res);
+        rootStore.uiStore.showSnackbar(
+          i18n.t('snackBarMessages.loginSuccess', {
+            username: rootStore.userStore.user?.username,
+          }),
+          'success',
+        );
       },
-      successMessage: t('snackBarMessages.loginSuccess'),
-      //errorMessage: t('snackBarMessages.loginError'),
       onFinally: () => setLoading(false),
     });
   };
@@ -57,56 +62,62 @@ export default function LoginScreen() {
   });
 
   return (
-    <View
-      style={{
-        ...styles.container,
-        backgroundColor: theme.colors.background,
-      }}>
-      <Text variant="headlineLarge" style={styles.title}>
-        {t('login.title')}
-      </Text>
-      <FormikProvider value={formik}>
-        <View style={styles.fields}>
-          <Field
-            component={FormikEmailInput}
-            name="user"
-            label={t('login.user')}
-            placeholder={t('login.userPlaceholder')}
-          />
-          <Field
-            component={FormikPasswordInput}
-            name="password"
-            label={t('login.password')}
-            placeholder={t('login.passwordPlaceholder')}
-          />
-          <Button
-            mode="contained"
-            onPress={onLoginPress}
-            disabled={loading}
-            loading={loading}
-            style={styles.button}>
-            {!loading && t('login.loginButton')}
-          </Button>
-        </View>
-        <Button
-          mode="text"
-          style={{paddingTop: 12}}
-          onPress={() => navigation.navigate('ForgotPassword')}>
-          {t('login.forgotPassword')}
-        </Button>
-        <View style={styles.footer}>
-          <Text style={{color: theme.colors.onBackground}}>
-            {t('login.noAccount')}
-          </Text>
+    <KeyboardAwareScrollView
+      contentContainerStyle={[
+        styles.container,
+        {backgroundColor: theme.colors.background},
+      ]}
+      enableOnAndroid={true}
+      extraScrollHeight={5}
+      keyboardOpeningTime={0}
+      keyboardShouldPersistTaps="handled">
+      <ScrollView style={styles.scroll}>
+        <Text variant="headlineLarge" style={styles.title}>
+          {t('login.title')}
+        </Text>
+        <FormikProvider value={formik}>
+          <View style={styles.fields}>
+            <Field
+              component={FormikEmailInput}
+              name="user"
+              label={t('login.user')}
+              placeholder={t('login.userPlaceholder')}
+            />
+            <Field
+              component={FormikPasswordInput}
+              name="password"
+              label={t('login.password')}
+              placeholder={t('login.passwordPlaceholder')}
+            />
+            <Button
+              mode="contained"
+              onPress={onLoginPress}
+              disabled={loading}
+              loading={loading}
+              style={styles.button}>
+              {!loading && t('login.loginButton')}
+            </Button>
+          </View>
           <Button
             mode="text"
-            onPress={() => navigation.navigate('SignUp')}
-            style={{}}>
-            {t('signUp.title')}
+            style={{paddingTop: 12}}
+            onPress={() => navigation.navigate('ForgotPassword')}>
+            {t('login.forgotPassword')}
           </Button>
-        </View>
-      </FormikProvider>
-    </View>
+          <View style={styles.footer}>
+            <Text style={{color: theme.colors.onBackground}}>
+              {t('login.noAccount')}
+            </Text>
+            <Button
+              mode="text"
+              onPress={() => navigation.navigate('SignUp')}
+              style={{}}>
+              {t('signUp.title')}
+            </Button>
+          </View>
+        </FormikProvider>
+      </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -114,7 +125,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 24,
-    paddingTop: '50%',
+  },
+  scroll: {
+    marginTop: '50%',
   },
   title: {
     fontWeight: '700',

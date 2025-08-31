@@ -9,7 +9,6 @@ import {useNavigation} from '../../lib/hooks/useNavigation.ts';
 import VehicleCard from '../../components/molecules/VehicleCard.tsx';
 import useApi from '../../lib/hooks/useApi.ts';
 import {Vehicle, VehicleListFilters} from '../../lib/types/vehicles.ts';
-import rootStore from '../../lib/stores/rootStore.ts';
 import i18n from 'i18next';
 import FilterButton from '../../components/molecules/FilterButton.tsx';
 import VehicleFiltersSheet from '../../components/organisms/VehicleFiltersSheet.tsx';
@@ -81,12 +80,6 @@ export default function VehicleListScreen() {
           setHasMore(res.length === PER_PAGE);
           setPage(nextPage);
           setData(prev => (replace ? res : [...prev, ...res]));
-        },
-        onError: err => {
-          setLoading(false);
-          setRefreshing(false);
-          //@ts-ignore
-          rootStore.uiStore.showSnackbar(err.response.data.error, 'danger');
         },
         onFinally: () => {
           setLoading(false);
@@ -171,7 +164,11 @@ export default function VehicleListScreen() {
           <VehicleCard
             vehicle={item}
             onPress={() => {
-              navigation.navigate('VehicleDetails', {id: item.id});
+              navigation.navigate('VehicleDetails', {
+                id: item.id,
+                startAt: filters.startAt?.getTime() ?? null,
+                endAt: filters.endAt?.getTime() ?? null,
+              });
             }}
           />
         )}

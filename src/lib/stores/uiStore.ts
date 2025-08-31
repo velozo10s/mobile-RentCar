@@ -12,8 +12,17 @@ export class UIStore {
     makeAutoObservable(this);
   }
 
-  showSnackbar(message: string, variant: UIStore['snackbar']['variant']) {
-    this.snackbar = {isVisible: true, message, variant, duration: 3000};
+  showSnackbar(
+    message: string,
+    variant: UIStore['snackbar']['variant'],
+    duration?: number,
+  ) {
+    this.snackbar = {
+      isVisible: true,
+      message,
+      variant,
+      duration: duration || 3000,
+    };
   }
 
   hideSnackbar() {
