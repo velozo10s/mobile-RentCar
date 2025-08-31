@@ -12,7 +12,8 @@
   "back": "Atras",
   "any": "Todos",
   "reset": "Limpiar",
-  "apply": "aplicar"
+  "apply": "aplicar",
+  "inbox": "Recibidos"
  },
  "tabNavigator": {
   "home": "Inicio",
@@ -101,6 +102,7 @@
    "electric": "electrico"
   },
   "mileage": "kilometraje",
+  "insuranceFee": "Seguro",
   "filters": {
    "filters": "Filtros",
    "sortBy": "Ordenar por",
@@ -131,7 +133,7 @@
  },
  "modals": {
   "userAccount": {
-   "title": "M001"
+   "title": "Usuario: {{username}}"
   },
   "selectLanguageModal": {
    "title": "Seleccionar Idioma",

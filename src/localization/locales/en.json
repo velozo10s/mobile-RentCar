@@ -12,7 +12,8 @@
   "back": "Back",
   "any": "All",
   "reset": "Reset",
-  "apply": "Apply"
+  "apply": "Apply",
+  "inbox": "Inbox"
  },
  "tabNavigator": {
   "home": "Home",
@@ -101,6 +102,7 @@
    "electric": "electric"
   },
   "mileage": "mileage",
+  "insuranceFee": "Insurance Fee",
   "filters": {
    "filters": "Filters",
    "sortBy": "Sort by",
@@ -131,7 +133,7 @@
  },
  "modals": {
   "userAccount": {
-   "title": "M001"
+   "title": "User: {{username}}"
   },
   "selectLanguageModal": {
    "title": "Select Language",

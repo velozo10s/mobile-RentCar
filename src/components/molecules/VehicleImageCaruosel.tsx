@@ -2,13 +2,13 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {
   View,
-  Image,
   FlatList,
   Pressable,
   LayoutChangeEvent,
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 export type VehicleImage = {url: string; is_primary: boolean};
 
@@ -20,6 +20,15 @@ type Props = {
 };
 
 const DOT = 8;
+
+const IMG_HEADERS = {
+  'User-Agent': 'RentApp/1.0 (contacto@tuapp.com)',
+  Accept: 'image/*',
+  Referer: 'https://tuapp.example',
+};
+
+const FALLBACK =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2P8z/C/HwAF8gJ5m3+gYQAAAABJRU5ErkJggg==';
 
 const VehicleImageCarousel: React.FC<Props> = ({
   images,
@@ -34,17 +43,11 @@ const VehicleImageCarousel: React.FC<Props> = ({
   const data = useMemo(() => {
     const list = Array.isArray(images) ? images.filter(Boolean) : [];
     if (list.length) {
-      // Sort so is_primary = true is first
       return [...list].sort(
         (a, b) => (b.is_primary ? 1 : 0) - (a.is_primary ? 1 : 0),
       );
     }
-    return [
-      {
-        url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2P8z/C/HwAF8gJ5m3+gYQAAAABJRU5ErkJggg==',
-        is_primary: true,
-      },
-    ];
+    return [{url: FALLBACK, is_primary: true}];
   }, [images]);
 
   const onLayout = (e: LayoutChangeEvent) => {
@@ -67,22 +70,22 @@ const VehicleImageCarousel: React.FC<Props> = ({
     ({item, index: i}: {item: VehicleImage; index: number}) => (
       <Pressable
         onPress={() => onImagePress?.(i)}
-        style={{
-          width: containerWidth || '100%', // fill until we know exact width
-          height,
-          overflow: 'hidden',
-        }}>
-        <Image
-          source={{uri: item.url}}
+        style={{width: containerWidth || '100%', height, overflow: 'hidden'}}>
+        <FastImage
           style={{width: '100%', height: '100%', backgroundColor: '#eee'}}
-          resizeMode="cover"
+          source={{
+            uri: item.url,
+            headers: IMG_HEADERS,
+            priority: FastImage.priority.normal,
+          }}
+          resizeMode={FastImage.resizeMode.cover}
+          onError={() => console.log('IMG ERROR carousel', i)}
         />
       </Pressable>
     ),
     [containerWidth, height, onImagePress],
   );
 
-  // IMPORTANT: wrapper needs width so onLayout fires with a real value
   return (
     <View
       onLayout={onLayout}
@@ -93,14 +96,12 @@ const VehicleImageCarousel: React.FC<Props> = ({
         keyExtractor={(_, i) => String(i)}
         renderItem={renderItem}
         horizontal
-        pagingEnabled
+        pagingEnabled={false}
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={onMomentumScrollEnd}
         decelerationRate="fast"
-        // enable snapping only after we know the width
         snapToInterval={containerWidth > 0 ? containerWidth : undefined}
         snapToAlignment="start"
-        // pass getItemLayout only when width is known
         {...(containerWidth > 0
           ? {
               getItemLayout: (_: any, i: number) => ({
@@ -113,7 +114,7 @@ const VehicleImageCarousel: React.FC<Props> = ({
         removeClippedSubviews
         initialNumToRender={1}
         windowSize={2}
-        style={{width: '100%', height}} // fill wrapper; items control exact width
+        style={{width: '100%', height}}
       />
 
       {/* dots */}

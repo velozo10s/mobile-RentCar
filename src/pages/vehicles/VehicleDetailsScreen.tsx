@@ -81,7 +81,9 @@ export default function VehicleDetailsScreen() {
       <Text style={{marginTop: 16}}>
         {t('vehicles.mileage')} {vehicle.mileage} km
       </Text>
-      <Text>Insurance Fee: ${vehicle.insurance_fee}</Text>
+      <Text>
+        {t('vehicles.insuranceFee')} ${vehicle.insurance_fee}
+      </Text>
 
       <Button
         mode="contained"

@@ -202,21 +202,21 @@ export default function VehicleFiltersSheet({
             onPress={() => setLocal(p => ({...p, type_id: undefined}))}>
             {t('common.any')}
           </Chip>
-          {types.map(t => (
+          {types.map(types => (
             <Chip
-              key={t.id}
-              selected={local.type_id === t.id}
+              key={types.id}
+              selected={local.type_id === types.id}
               onPress={() =>
                 setLocal(p => ({
                   ...p,
-                  type_id: p.type_id === t.id ? undefined : t.id,
+                  type_id: p.type_id === types.id ? undefined : types.id,
                 }))
               }>
-              {t.name}
+              {t(`vehicles.type.${types.name}`)}
             </Chip>
           ))}
         </View>
-
+        {t.name}
         <Divider style={{marginVertical: 8}} />
 
         {/* Dates */}

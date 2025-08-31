@@ -23,31 +23,31 @@ export default function DrawerItems() {
 
   const DrawerItemsData = [
     {
-      label: 'Inbox',
+      label: t('common.inbox'),
       icon: 'inbox',
       key: 0,
-      right: () => <Text variant="labelLarge">44</Text>,
+      right: () => <Text variant="labelLarge">5</Text>,
     },
-    {
-      label: 'Starred',
-      icon: 'star',
-      key: 1,
-      right: ({color}: {color: string}) => (
-        <Badge
-          visible
-          size={8}
-          style={[styles.badge, {backgroundColor: color}]}
-        />
-      ),
-    },
-    {label: 'Sent mail', icon: 'send', key: 2},
-    {label: 'Colored label', icon: 'palette', key: 3},
-    {
-      label: 'A very long title that will be truncated',
-      icon: 'delete',
-      key: 4,
-      right: () => <Badge visible size={8} style={styles.badge} />,
-    },
+    // {
+    //   label: 'Starred',
+    //   icon: 'star',
+    //   key: 1,
+    //   right: ({color}: {color: string}) => (
+    //     <Badge
+    //       visible
+    //       size={8}
+    //       style={[styles.badge, {backgroundColor: color}]}
+    //     />
+    //   ),
+    // },
+    // {label: 'Sent mail', icon: 'send', key: 2},
+    // {label: 'Colored label', icon: 'palette', key: 3},
+    // {
+    //   label: 'A very long title that will be truncated',
+    //   icon: 'delete',
+    //   key: 4,
+    //   right: () => <Badge visible size={8} style={styles.badge} />,
+    // },
   ];
 
   return (
@@ -65,7 +65,7 @@ export default function DrawerItems() {
           justifyContent: 'space-between',
         }}>
         <View>
-          <Drawer.Section title="Example items">
+          <Drawer.Section title="Items">
             {DrawerItemsData.map((props, index) => (
               <Drawer.Item
                 {...props}
@@ -91,13 +91,13 @@ export default function DrawerItems() {
             </TouchableRipple>
           </Drawer.Section>
 
-          <Drawer.Section title={'Dev tools'} showDivider={true}>
-            <TouchableRipple onPress={logStore}>
-              <View style={{paddingHorizontal: 28}}>
-                <Text variant="labelLarge">Log store values</Text>
-              </View>
-            </TouchableRipple>
-          </Drawer.Section>
+          {/*<Drawer.Section title={'Dev tools'} showDivider={true}>*/}
+          {/*  <TouchableRipple onPress={logStore}>*/}
+          {/*    <View style={{paddingHorizontal: 28}}>*/}
+          {/*      <Text variant="labelLarge">Log store values</Text>*/}
+          {/*    </View>*/}
+          {/*  </TouchableRipple>*/}
+          {/*</Drawer.Section>*/}
         </View>
 
         <Drawer.Section showDivider={false}>
