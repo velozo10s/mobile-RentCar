@@ -51,7 +51,7 @@ export default function SignUpScreen() {
         {backgroundColor: theme.colors.background},
       ]}
       enableOnAndroid={true}
-      extraScrollHeight={160}
+      extraScrollHeight={80}
       keyboardOpeningTime={0}
       keyboardShouldPersistTaps="handled">
       <ScrollView>

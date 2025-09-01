@@ -88,6 +88,7 @@ const VehicleImageCarousel: React.FC<Props> = ({
 
   return (
     <View
+      testID="vehicle-carousel"
       onLayout={onLayout}
       style={{width: '100%', height, borderRadius, overflow: 'hidden'}}>
       <FlatList
@@ -119,6 +120,7 @@ const VehicleImageCarousel: React.FC<Props> = ({
 
       {/* dots */}
       <View
+        testID="carousel-dots"
         style={{
           position: 'absolute',
           bottom: 10,
@@ -131,6 +133,7 @@ const VehicleImageCarousel: React.FC<Props> = ({
         {data.map((_, i) => (
           <View
             key={i}
+            testID={i === index ? 'dot-active' : 'dot'}
             style={{
               width: DOT,
               height: DOT,

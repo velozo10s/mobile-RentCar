@@ -4,12 +4,23 @@ import {useTranslation} from 'react-i18next';
 import {Field, FormikProvider, useFormik} from 'formik';
 import * as Yup from 'yup';
 import {Button} from 'react-native-paper';
+
 import FormikSelectInput from '../../components/formik/FormikSelectInput.tsx';
-import {SUPPORTED_DOCUMENTS} from '../../lib/constants/documents.ts';
-import {SelectInputOptionsProp} from '../../lib/types/selectInput.ts';
 import FormikTextInput from '../../components/formik/FormikTextInput.tsx';
 import FormikPhoneInput from '../../components/formik/FormikPhoneInput.tsx';
 import FormikEmailInput from '../../components/formik/FormikEmailInput.tsx';
+import FormikDateInput from '../../components/formik/FormikDateInput.tsx';
+
+import {SUPPORTED_DOCUMENTS} from '../../lib/constants/documents.ts';
+import {SelectInputOptionsProp} from '../../lib/types/selectInput.ts';
+import {
+  yearsAgo,
+  isAtLeastAge,
+  formatYYYYMMDD,
+} from '../../lib/helpers/date.ts'; // 👈
+
+const ADULT_YEARS = 18;
+const MAX_BIRTH_DATE = yearsAgo(ADULT_YEARS); // hoy - 18
 
 interface SignUpStep2Props {
   onNext?: (data: {}) => void;
@@ -25,13 +36,14 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
     documentNumber: '1111111',
     phoneNumber: '+595982471257',
     nationalityCode: 'PY',
-    birthDate: '1970-01-01',
+    // Sugerencia UX: iniciar en la fecha máxima para que el selector no parta de "hoy"
+    birthDate: MAX_BIRTH_DATE,
     username: 'jperez',
   };
 
   const validationSchema = Yup.object({
     documentType: Yup.string()
-      .oneOf(['CI', 'PASSPORT'], 'Invalid document type') // adjust enum values if necessary
+      .oneOf(['CI', 'PASSPORT'], 'Invalid document type')
       .required('Document type is required'),
     documentNumber: Yup.string()
       .matches(/^[a-zA-Z0-9]{5,20}$/, 'Invalid document number')
@@ -42,27 +54,26 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
     nationalityCode: Yup.string()
       .length(2, 'Nationality must be a 2-letter country code')
       .required('Nationality is required'),
-    birthDate: Yup.date().required('Birth date is required'),
+    birthDate: Yup.date()
+      .required('Birth date is required')
+      .max(MAX_BIRTH_DATE, t('Debe ser mayor de 18 años')) // bloqueo por Yup
+      .test('is-adult', t('Debe ser mayor de 18 años'), value =>
+        value ? isAtLeastAge(new Date(value), ADULT_YEARS) : false,
+      ),
     username: Yup.string().required('Username is required'),
   });
 
-  const onSignUpPress = () => {
-    if (onNext) {
-      onNext(formik.values);
-    }
-  };
-
-  const onBackPress = () => {
-    //signUp(formik.values);
-    if (onBack) {
-      onBack();
-    }
-  };
-
   const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: validationSchema,
-    onSubmit: onSignUpPress,
+    initialValues,
+    validationSchema,
+    onSubmit: () => {
+      // (opcional) enviar birthDate como string YYYY-MM-DD
+      const payload = {
+        ...formik.values,
+        birthDate: formatYYYYMMDD(new Date(formik.values.birthDate)),
+      };
+      onNext?.(payload);
+    },
   });
 
   const documentOptions: SelectInputOptionsProp[] = useMemo(
@@ -73,6 +84,8 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
       })),
     [t],
   );
+
+  const onBackPress = () => onBack?.();
 
   return (
     <FormikProvider value={formik}>
@@ -103,18 +116,28 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
           label={t('signUp.nationalityCode')}
           placeholder={t('signUp.nationalityCodePlaceholder')}
         />
+
+        {/*
+         * FormikDateInput debería propagar props al DatePicker.
+         * Si tu componente los soporta, pasá maximumDate={MAX_BIRTH_DATE}
+         */}
         <Field
-          component={FormikTextInput}
+          component={FormikDateInput}
           name="birthDate"
           label={t('signUp.birthDate')}
           placeholder={t('signUp.birthDatePlaceholder')}
+          maximumDate={MAX_BIRTH_DATE} // 👈 bloquea fechas > (hoy-18)
+          // minimumDate={yearsAgo(100)}  // (opcional) no permitir >100 años
+          // mode="date" etc.
         />
+
         <Field
           component={FormikEmailInput}
           name="username"
           label={t('signUp.username')}
           placeholder={t('signUp.usernamePlaceholder')}
         />
+
         <View style={styles.buttonRow}>
           <Button
             mode="contained"
@@ -125,7 +148,7 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
           </Button>
           <Button
             mode="contained"
-            onPress={onSignUpPress}
+            onPress={formik.submitForm}
             loading={loading}
             style={styles.flexButton}>
             {t('common.next')}
@@ -137,25 +160,7 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
 }
 
 const styles = StyleSheet.create({
-  fields: {
-    gap: 20,
-  },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    marginTop: 24,
-    marginBottom: 12,
-  },
-  buttonRow: {
-    flexDirection: 'row',
-    width: '100%',
-    marginTop: 24,
-  },
-  flexButton: {
-    flex: 1,
-    marginHorizontal: 4,
-  },
+  fields: {gap: 20},
+  buttonRow: {flexDirection: 'row', width: '100%', marginTop: 24},
+  flexButton: {flex: 1, marginHorizontal: 4},
 });

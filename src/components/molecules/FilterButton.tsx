@@ -12,6 +12,7 @@ export default function FilterButton({onPress, activeCount = 0}: Props) {
   return (
     <View>
       <IconButton
+        testID="filters-button"
         icon="filter-variant"
         onPress={onPress}
         accessibilityLabel="Open filters"

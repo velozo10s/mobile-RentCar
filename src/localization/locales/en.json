@@ -117,7 +117,8 @@
    "dateError": "Start and end dates must be set and valid"
   },
   "bookNow": "Book Now!",
-  "confirmReservation": "Confirm Reservation"
+  "confirmReservation": "Confirm",
+  "bookYourReservation": "Book your reservation"
  },
  "settings": {
   "title": "Settings Screen",

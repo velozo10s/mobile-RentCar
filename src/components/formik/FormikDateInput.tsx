@@ -40,7 +40,6 @@ export default function FormikDateInput(props: FormikSelectInputProps) {
       mode={'outlined'}
       style={{
         marginTop: 10,
-        marginBottom: -30,
       }}
       {...rest}
     />

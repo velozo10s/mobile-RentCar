@@ -40,9 +40,9 @@ const languageDetector: LanguageDetectorAsyncModule = {
     /* no-op */
   },
 
-  cacheUserLanguage: lang => {
-    AsyncStorage.setItem(LANG_KEY, lang).catch(() => {});
-  },
+  // cacheUserLanguage: lang => {
+  //   AsyncStorage.setItem(LANG_KEY, lang).catch(() => {});
+  // },
 };
 
 void i18n

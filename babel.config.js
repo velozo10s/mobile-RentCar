@@ -1,4 +1,9 @@
-module.exports = {
-  presets: ['module:@react-native/babel-preset'],
-  plugins: ['react-native-paper/babel', 'react-native-reanimated/plugin'],
+module.exports = function (api) {
+  const isTest = api.env('test');
+  return {
+    presets: ['module:@react-native/babel-preset'],
+    plugins: [
+      !isTest && 'react-native-reanimated/plugin', // NO cargar en jest
+    ].filter(Boolean),
+  };
 };

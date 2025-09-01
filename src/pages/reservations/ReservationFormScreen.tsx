@@ -45,8 +45,8 @@ export default function ReservationFormScreen() {
   };
 
   const initialValues = {
-    startAt: params.startAt ? params.startAt : new Date(),
-    endAt: params.endAt,
+    startAt: params.startAt ? new Date(params.startAt) : new Date(),
+    endAt: params.endAt ? new Date(params.endAt) : new Date(),
     vehicleIds: [params.id],
     note: '',
   };
@@ -58,7 +58,12 @@ export default function ReservationFormScreen() {
   });
 
   const onConfirmPress = () => {
-    confirmReservation(formik.values);
+    const payload = {
+      ...formik.values,
+      startAt: new Date(formik.values.startAt),
+      endAt: new Date(formik.values.endAt),
+    };
+    confirmReservation(payload);
   };
 
   const formik = useFormik({
@@ -79,7 +84,7 @@ export default function ReservationFormScreen() {
       keyboardShouldPersistTaps="handled">
       <ScrollView>
         <Text variant="titleLarge" style={styles.title}>
-          Book your reservation
+          {t('vehicles.bookYourReservation')}
         </Text>
         <FormikProvider value={formik}>
           <View style={styles.fields}>
@@ -105,8 +110,7 @@ export default function ReservationFormScreen() {
               mode="contained"
               onPress={onConfirmPress}
               disabled={loading}
-              loading={loading}
-              style={styles.button}>
+              loading={loading}>
               {!loading && t('vehicles.confirmReservation')}
             </Button>
           </View>
@@ -127,14 +131,11 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   fields: {
-    gap: 80,
+    gap: 20,
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  button: {
-    marginTop: -35,
   },
 });

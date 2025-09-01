@@ -78,18 +78,21 @@ export default function LoginScreen() {
         <FormikProvider value={formik}>
           <View style={styles.fields}>
             <Field
+              testID="login-user"
               component={FormikEmailInput}
               name="user"
               label={t('login.user')}
               placeholder={t('login.userPlaceholder')}
             />
             <Field
+              testID="login-password"
               component={FormikPasswordInput}
               name="password"
               label={t('login.password')}
               placeholder={t('login.passwordPlaceholder')}
             />
             <Button
+              testID="login-submit"
               mode="contained"
               onPress={onLoginPress}
               disabled={loading}

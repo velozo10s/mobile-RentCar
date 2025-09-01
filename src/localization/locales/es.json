@@ -117,7 +117,8 @@
    "dateError": "Fecha de inicio y fin deben ser validos."
   },
   "bookNow": "Solicitalo ahora!",
-  "confirmReservation": "Confirmar Reserva"
+  "confirmReservation": "Confirmar",
+  "bookYourReservation": "Solicitalo ahora"
  },
  "settings": {
   "title": "Pantalla de Configuraciones",

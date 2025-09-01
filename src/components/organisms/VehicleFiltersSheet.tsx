@@ -216,7 +216,6 @@ export default function VehicleFiltersSheet({
             </Chip>
           ))}
         </View>
-        {t.name}
         <Divider style={{marginVertical: 8}} />
 
         {/* Dates */}
@@ -260,6 +259,7 @@ export default function VehicleFiltersSheet({
           <View style={{flexDirection: 'row', gap: 8}}>
             <Button onPress={onDismiss}>{t('common.cancel')}</Button>
             <Button
+              testID="filters-apply"
               mode="contained"
               disabled={!canApply}
               onPress={() => onApply(local)}>
