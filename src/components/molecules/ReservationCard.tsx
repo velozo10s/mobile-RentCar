@@ -27,11 +27,12 @@ function formatRange(startISO: string, endISO: string) {
 }
 
 const statusColor: Record<string, string | undefined> = {
-  pending: '#f0ad4e', // naranja
-  active: '#0275d8', // azul
-  //completed: '#5cb85c', // verde
-  confirmed: '#5cb85c', // verde
-  cancelled: '#d9534f', // rojo
+  pending: '#FFC107',
+  confirmed: '#4CAF50',
+  active: '#1976D2',
+  completed: '#9E9E9E',
+  declined: '#D32F2F',
+  cancelled: '#D32F2F',
 };
 
 const ReservationCard = memo(({reservation, onPress}: Props) => {

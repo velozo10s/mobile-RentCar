@@ -128,12 +128,12 @@
   "status": {
    "label": "Estado",
    "all": "Todos",
-   "pending": "Pendientes",
-   "confirmed": "Confirmados",
+   "pending": "Pendiente",
+   "confirmed": "Confirmado",
    "active": "En curso",
-   "completed": "Completados",
-   "declined": "Rechazados",
-   "cancelled": "Cancelados"
+   "completed": "Completado",
+   "declined": "Rechazado",
+   "cancelled": "Cancelado"
   },
   "empty": "No se encontraron resultados",
   "total": "Total",
