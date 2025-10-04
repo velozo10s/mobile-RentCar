@@ -53,4 +53,5 @@ export type SettingsStackParamList = {
 
 export type ReservationsStackParamList = {
   Reservations: undefined;
+  ReservationDetails: {id: number};
 };

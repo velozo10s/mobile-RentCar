@@ -124,6 +124,13 @@
  "reservations": {
   "title": "Reservations History",
   "reservation": "Reservation",
+  "vehicle": "Vehicle",
+  "cancel": {
+   "button": "Cancel",
+   "title": "Are you sure you want to cancel your reservation?",
+   "alert": "This action cannot be undone."
+  },
+  "items": "Items",
   "filters": "Filters",
   "status": {
    "label": "Status",

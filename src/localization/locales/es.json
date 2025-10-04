@@ -124,6 +124,13 @@
  "reservations": {
   "title": "Historial de reservas",
   "reservation": "Reserva",
+  "vehicle": "Vehiculo",
+  "cancel": {
+   "button": "Cancelar",
+   "title": "Estas seguro de cancelar tu reserva?",
+   "alert": "Esta accion no se puede deshacer."
+  },
+  "items": "Items",
   "filters": "Filtros",
   "status": {
    "label": "Estado",

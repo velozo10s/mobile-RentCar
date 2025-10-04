@@ -39,3 +39,11 @@ export const getVehicleTypes = () => {
 export const listReservations = (params: {[key: string]: any}) => {
   return wrapRequest(client.get('/reservations', {params}));
 };
+
+export const getReservation = (id: number) => {
+  return wrapRequest(client.get(`/reservations/${id}`));
+};
+
+export const cancelReservation = (id: number) => {
+  return wrapRequest(client.patch(`/reservations/${id}/cancel`));
+};

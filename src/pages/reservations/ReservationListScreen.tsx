@@ -17,7 +17,7 @@ type status = {
 };
 
 export default function ReservationListScreen() {
-  const nav = useNavigation('HomeStack');
+  const nav = useNavigation('ReservationStack');
 
   const [data, setData] = useState<Reservation[]>([]);
   const [loading, setLoading] = useState(true);
@@ -90,9 +90,7 @@ export default function ReservationListScreen() {
         renderItem={({item}) => (
           <ReservationCard
             reservation={item}
-            onPress={() =>
-              console.log("nav.navigate('ReservationDetails', {id: item.id}")
-            }
+            onPress={() => nav.navigate('ReservationDetails', {id: item.id})}
           />
         )}
         ListHeaderComponent={ListHeader}
