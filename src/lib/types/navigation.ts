@@ -9,6 +9,7 @@ export type DrawerParamList = {
 
 export type TabParamList = {
   HomeTab: undefined;
+  ReservationsTab: undefined;
   SettingsTab: undefined;
   // here goes bottom-tabs-only screens if added more in the future.
 };
@@ -48,4 +49,8 @@ export type HomeStackParamList = {
 
 export type SettingsStackParamList = {
   Settings: undefined;
+};
+
+export type ReservationsStackParamList = {
+  Reservations: undefined;
 };

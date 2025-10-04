@@ -3,7 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['module:@react-native/babel-preset'],
     plugins: [
-      !isTest && 'react-native-reanimated/plugin', // NO cargar en jest
+      !isTest && 'react-native-worklets/plugin', // NO cargar en jest
     ].filter(Boolean),
   };
 };

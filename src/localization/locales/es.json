@@ -13,11 +13,13 @@
   "any": "Todos",
   "reset": "Limpiar",
   "apply": "aplicar",
-  "inbox": "Recibidos"
+  "inbox": "Recibidos",
+  "viewDetails": "Ver detalles"
  },
  "tabNavigator": {
   "home": "Inicio",
-  "settings": "Configuraciones"
+  "settings": "Configuraciones",
+  "reservations": "Reservas"
  },
  "login": {
   "title": "Ingresar",
@@ -79,7 +81,6 @@
  },
  "vehicles": {
   "search": "Buscar vehiculo",
-  "viewDetails": "Ver detalles",
   "perDay": "/dia",
   "perHour": "/hora",
   "seats": "asientos",
@@ -119,6 +120,24 @@
   "bookNow": "Solicitalo ahora!",
   "confirmReservation": "Confirmar",
   "bookYourReservation": "Solicitalo ahora"
+ },
+ "reservations": {
+  "title": "Historial de reservas",
+  "reservation": "Reserva",
+  "filters": "Filtros",
+  "status": {
+   "label": "Estado",
+   "all": "Todos",
+   "pending": "Pendientes",
+   "confirmed": "Confirmados",
+   "active": "En curso",
+   "completed": "Completados",
+   "declined": "Rechazados",
+   "cancelled": "Cancelados"
+  },
+  "empty": "No se encontraron resultados",
+  "total": "Total",
+  "note": "Nota"
  },
  "settings": {
   "title": "Pantalla de Configuraciones",

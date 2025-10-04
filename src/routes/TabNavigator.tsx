@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from './stacks/HomeStack';
-import SettingsStack from './stacks/SettingsStack';
+import ReservationsStack from './stacks/ReservationsStack';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {BottomNavigation} from 'react-native-paper';
 import {CommonActions} from '@react-navigation/native';
@@ -67,12 +67,12 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="SettingsTab"
-        component={SettingsStack}
+        name="ReservationsTab"
+        component={ReservationsStack}
         options={{
-          tabBarLabel: t('tabNavigator.settings'),
+          tabBarLabel: t('tabNavigator.reservations'),
           tabBarIcon: ({color, size}) => (
-            <Icon name="settings" color={color} size={size} />
+            <Icon name="history" color={color} size={size} />
           ),
         }}
       />

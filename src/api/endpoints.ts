@@ -35,3 +35,7 @@ export const getVehicleBrands = () => {
 export const getVehicleTypes = () => {
   return wrapRequest(client.get(`/vehicles/types`));
 };
+
+export const listReservations = (params: {[key: string]: any}) => {
+  return wrapRequest(client.get('/reservations', {params}));
+};

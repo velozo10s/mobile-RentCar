@@ -13,11 +13,13 @@
   "any": "All",
   "reset": "Reset",
   "apply": "Apply",
-  "inbox": "Inbox"
+  "inbox": "Inbox",
+  "viewDetails": "View details"
  },
  "tabNavigator": {
   "home": "Home",
-  "settings": "Settings"
+  "settings": "Settings",
+  "reservations": "Reservations"
  },
  "login": {
   "title": "Login",
@@ -79,7 +81,6 @@
  },
  "vehicles": {
   "search": "Search vehicle",
-  "viewDetails": "View details",
   "perDay": "/day",
   "perHour": "/hr",
   "seats": "seats",
@@ -119,6 +120,24 @@
   "bookNow": "Book Now!",
   "confirmReservation": "Confirm",
   "bookYourReservation": "Book your reservation"
+ },
+ "reservations": {
+  "title": "Reservations History",
+  "reservation": "Reservation",
+  "filters": "Filters",
+  "status": {
+   "label": "Status",
+   "all": "All",
+   "pending": "Pending",
+   "confirmed": "Confirmed",
+   "active": "In progress",
+   "completed": "Completed",
+   "declined": "Declined",
+   "cancelled": "Cancelled"
+  },
+  "empty": "No data found",
+  "total": "Total",
+  "note": "Note"
  },
  "settings": {
   "title": "Settings Screen",

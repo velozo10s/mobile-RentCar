@@ -71,7 +71,7 @@ const VehicleCard = memo(({vehicle, onPress}: Props) => {
 
       <Card.Actions style={styles.cardActions}>
         <Button mode="contained-tonal" onPress={onPress}>
-          {t('vehicles.viewDetails')}
+          {t('common.viewDetails')}
         </Button>
       </Card.Actions>
     </Card>
