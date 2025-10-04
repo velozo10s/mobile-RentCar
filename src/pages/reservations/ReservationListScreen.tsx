@@ -75,7 +75,7 @@ export default function ReservationListScreen() {
 
   if (loading && data.length === 0) {
     return (
-      <View style={{flex: 1, justifyContent: 'center'}}>
+      <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" />
       </View>
     );
@@ -98,17 +98,15 @@ export default function ReservationListScreen() {
         ListHeaderComponent={ListHeader}
         ListFooterComponent={
           !loading && data.length === 0 ? (
-            <View style={{padding: 24}}>
-              <Text style={{textAlign: 'center', opacity: 0.6}}>
-                {t('reservations.empty')}
-              </Text>
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>{t('reservations.empty')}</Text>
             </View>
           ) : null
         }
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
-        contentContainerStyle={{paddingBottom: 16}}
+        contentContainerStyle={styles.listContent}
       />
 
       <ReservationsFiltersSheet
@@ -126,6 +124,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 12,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   title: {
     fontWeight: '700',
     paddingVertical: 24,
@@ -136,5 +138,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 8,
+  },
+  emptyContainer: {
+    padding: 24,
+  },
+  emptyText: {
+    textAlign: 'center',
+    opacity: 0.6,
+  },
+  listContent: {
+    paddingBottom: 16,
   },
 });

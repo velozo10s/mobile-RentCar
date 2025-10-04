@@ -27,12 +27,12 @@ function formatRange(startISO: string, endISO: string) {
 }
 
 const statusColor: Record<string, string | undefined> = {
-  pending: '#FFC107',
-  confirmed: '#4CAF50',
-  active: '#1976D2',
-  completed: '#9E9E9E',
-  declined: '#D32F2F',
-  cancelled: '#D32F2F',
+  pending: '#FFC107', // warning
+  confirmed: '#4CAF50', // success
+  active: '#1976D2', // info
+  completed: '#9E9E9E', // default
+  declined: '#D32F2F', // error
+  cancelled: '#D32F2F', // error
 };
 
 const ReservationCard = memo(({reservation, onPress}: Props) => {
@@ -49,36 +49,29 @@ const ReservationCard = memo(({reservation, onPress}: Props) => {
           <Chip
             compact
             mode="flat"
-            style={{
-              backgroundColor: statusColor[status] ?? '#6c757d', // fallback gris
-            }}
-            textStyle={{
-              color: '#fff', // asegura contraste sobre fondos fuertes
-              fontWeight: 'bold',
-            }}>
+            style={[
+              styles.chip,
+              {backgroundColor: statusColor[status] ?? '#6c757d'},
+            ]}
+            textStyle={styles.chipText}>
             {i18n.t(`reservations.status.${status}`, status)}
           </Chip>
         </View>
 
-        <Text variant="bodyMedium" style={{opacity: 0.8}}>
+        <Text variant="bodyMedium" style={styles.bodyMuted}>
           {formatRange(reservation.start_at, reservation.end_at)}
         </Text>
 
         {!!reservation.note && (
-          <Text variant="bodySmall" style={{opacity: 0.7}}>
+          <Text variant="bodySmall" style={styles.smallMuted}>
             {i18n.t('reservations.note')}: {reservation.note}
           </Text>
         )}
 
-        <Divider style={{marginVertical: 4}} />
+        <Divider style={styles.divider} />
 
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <Text variant="labelLarge" style={{opacity: 0.7}}>
+        <View style={styles.row}>
+          <Text variant="labelLarge" style={styles.rowLabel}>
             {i18n.t('reservations.total')}
           </Text>
           <Text variant="titleMedium">
@@ -90,12 +83,7 @@ const ReservationCard = memo(({reservation, onPress}: Props) => {
         </View>
       </Card.Content>
 
-      <Card.Actions
-        style={{
-          justifyContent: 'flex-end',
-          paddingHorizontal: 16,
-          paddingBottom: 12,
-        }}>
+      <Card.Actions style={styles.actions}>
         <Button mode="contained-tonal" onPress={onPress}>
           {i18n.t('common.viewDetails')}
         </Button>
@@ -118,6 +106,45 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+
+  // ---- Chip ----
+  chip: {
+    borderRadius: 16,
+  },
+  chipText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+
+  // ---- Text ----
+  bodyMuted: {
+    opacity: 0.8,
+  },
+  smallMuted: {
+    opacity: 0.7,
+  },
+
+  // ---- Divider ----
+  divider: {
+    marginVertical: 4,
+  },
+
+  // ---- Row totals ----
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  rowLabel: {
+    opacity: 0.7,
+  },
+
+  // ---- Actions ----
+  actions: {
+    justifyContent: 'flex-end',
+    paddingHorizontal: 16,
+    paddingBottom: 12,
   },
 });
 

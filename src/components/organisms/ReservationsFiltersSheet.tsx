@@ -51,50 +51,29 @@ export default function ReservationsFiltersSheet({
       <Modal
         visible={visible}
         onDismiss={onDismiss}
-        contentContainerStyle={{
-          margin: 16,
-          borderRadius: 16,
-          backgroundColor: theme.colors.background,
-          padding: 16,
-        }}>
-        <Text variant="titleMedium" style={{marginBottom: 20}}>
+        contentContainerStyle={[
+          styles.modalContent,
+          {backgroundColor: theme.colors.background},
+        ]}>
+        <Text variant="titleMedium" style={styles.title}>
           {t('reservations.filters')}
         </Text>
 
-        <Text style={{marginBottom: 6}}>{t('reservations.status.label')}</Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 8,
-            marginBottom: 8,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              gap: 8,
-              marginBottom: 8,
-            }}>
-            {SUPPORTED_LANGUAGES.map(b => (
-              <Chip
-                key={b.id}
-                selected={status.id === b.id}
-                onPress={() => setStatus({id: b.id, labelKey: b.labelKey})}>
-                {t(b.labelKey)}
-              </Chip>
-            ))}
-          </View>
+        <Text style={styles.label}>{t('reservations.status.label')}</Text>
+        <View style={styles.chipWrapper}>
+          {SUPPORTED_LANGUAGES.map(b => (
+            <Chip
+              key={b.id}
+              selected={status.id === b.id}
+              onPress={() => setStatus({id: b.id, labelKey: b.labelKey})}>
+              {t(b.labelKey)}
+            </Chip>
+          ))}
         </View>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 12,
-          }}>
+        <View style={styles.footer}>
           <Button onPress={reset}>{t('common.reset')}</Button>
-          <View style={{flexDirection: 'row', gap: 8}}>
+          <View style={styles.footerButtons}>
             <Button onPress={onDismiss}>{t('common.cancel')}</Button>
             <Button
               testID="filters-apply"
@@ -110,38 +89,30 @@ export default function ReservationsFiltersSheet({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerContainer: {
-    paddingHorizontal: 12,
-    paddingTop: 12,
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 8,
-  },
-  headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  footerLoading: {
-    paddingVertical: 16,
-  },
-  footerEnd: {
+  modalContent: {
+    margin: 16,
+    borderRadius: 16,
     padding: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  title: {padding: 10},
-  select: {
-    marginTop: 16,
-    backgroundColor: 'transparent',
+  title: {
+    marginBottom: 20,
+  },
+  label: {
+    marginBottom: 6,
+  },
+  chipWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 8,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 12,
+  },
+  footerButtons: {
+    flexDirection: 'row',
+    gap: 8,
   },
 });
