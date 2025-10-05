@@ -14,7 +14,8 @@
   "reset": "Reset",
   "apply": "Apply",
   "inbox": "Inbox",
-  "viewDetails": "View details"
+  "viewDetails": "View details",
+  "empty": "No data found"
  },
  "tabNavigator": {
   "home": "Home",
@@ -142,7 +143,6 @@
    "declined": "Declined",
    "cancelled": "Cancelled"
   },
-  "empty": "No data found",
   "total": "Total",
   "note": "Note"
  },

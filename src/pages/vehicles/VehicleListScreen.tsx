@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
+import {FlatList, RefreshControl, StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
 import MainSearchBar from '../../components/molecules/searchBar.tsx';
@@ -58,7 +58,6 @@ export default function VehicleListScreen() {
   const fetchPage = useCallback(
     (nextPage: number, replace = false) => {
       const params = {
-        status: 'available',
         page: nextPage,
         per_page: PER_PAGE,
         sort: filters.sort,
@@ -187,6 +186,16 @@ export default function VehicleListScreen() {
             <></>
           )
         }
+        ListEmptyComponent={
+          loading ? null : (
+            <View style={styles.emptyContainer}>
+              <ActivityIndicator animating={false} />
+              <Text style={{color: theme.colors.onBackground}}>
+                {t('common.empty')}
+              </Text>
+            </View>
+          )
+        }
         onEndReachedThreshold={0.4}
         onEndReached={loadMore}
         refreshControl={
@@ -234,4 +243,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {padding: 10},
+  emptyContainer: {
+    paddingVertical: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

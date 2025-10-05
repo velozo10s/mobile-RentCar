@@ -97,7 +97,7 @@ export default function ReservationListScreen() {
         ListFooterComponent={
           !loading && data.length === 0 ? (
             <View style={styles.emptyContainer}>
-              <Text style={styles.emptyText}>{t('reservations.empty')}</Text>
+              <Text style={styles.emptyText}>{t('common.empty')}</Text>
             </View>
           ) : null
         }

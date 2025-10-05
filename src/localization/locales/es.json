@@ -14,7 +14,8 @@
   "reset": "Limpiar",
   "apply": "aplicar",
   "inbox": "Recibidos",
-  "viewDetails": "Ver detalles"
+  "viewDetails": "Ver detalles",
+  "empty": "No se encontraron resultados"
  },
  "tabNavigator": {
   "home": "Inicio",
@@ -142,7 +143,6 @@
    "declined": "Rechazado",
    "cancelled": "Cancelado"
   },
-  "empty": "No se encontraron resultados",
   "total": "Total",
   "note": "Nota"
  },
