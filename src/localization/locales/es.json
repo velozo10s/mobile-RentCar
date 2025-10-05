@@ -15,7 +15,8 @@
   "apply": "aplicar",
   "inbox": "Recibidos",
   "viewDetails": "Ver detalles",
-  "empty": "No se encontraron resultados"
+  "empty": "No se encontraron resultados",
+  "time": "Hora"
  },
  "tabNavigator": {
   "home": "Inicio",
@@ -145,6 +146,19 @@
   },
   "total": "Total",
   "note": "Nota"
+ },
+ "ratings": {
+  "sectionTitle": "Calificación",
+  "title": "Califica tu experiencia",
+  "yourRating": "Tu calificación",
+  "comment": "Comentario (opcional)",
+  "submit": "Enviar calificación",
+  "submitted": "¡Gracias por tu calificación!",
+  "submittedAt": "Enviado el: {{date}}",
+  "submitError": "No se pudo enviar la calificación",
+  "required": "Selecciona una puntuación entre 1 y 5.",
+  "hint": "Toca una estrella para elegir tu puntaje.",
+  "notEligible": "Podés calificar cuando la reserva esté completada."
  },
  "settings": {
   "title": "Pantalla de Configuraciones",

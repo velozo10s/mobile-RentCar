@@ -15,7 +15,8 @@
   "apply": "Apply",
   "inbox": "Inbox",
   "viewDetails": "View details",
-  "empty": "No data found"
+  "empty": "No data found",
+  "time": "Time"
  },
  "tabNavigator": {
   "home": "Home",
@@ -145,6 +146,19 @@
   },
   "total": "Total",
   "note": "Note"
+ },
+ "ratings": {
+  "sectionTitle": "Rating",
+  "title": "Rate your experience",
+  "yourRating": "Your rating",
+  "comment": "Comment (optional)",
+  "submit": "Submit rating",
+  "submitted": "Thanks for your rating!",
+  "submittedAt": "Submitted At: {{date}}",
+  "submitError": "Could not submit rating",
+  "required": "Please select a score between 1 and 5.",
+  "hint": "Tap a star to select your score.",
+  "notEligible": "You can rate after the reservation is completed."
  },
  "settings": {
   "title": "Settings Screen",

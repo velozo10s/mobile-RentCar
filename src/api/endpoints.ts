@@ -1,4 +1,9 @@
 import client, {wrapRequest} from './client';
+import {
+  CreateRatingDto,
+  Rating,
+  RatingDirection,
+} from '../lib/types/ratings.ts';
 
 export const login = (data: {[key: string]: any}) => {
   return wrapRequest(client.post('/auth/login/', data));
@@ -46,4 +51,24 @@ export const getReservation = (id: number) => {
 
 export const cancelReservation = (id: number) => {
   return wrapRequest(client.patch(`/reservations/${id}/cancel`));
+};
+
+export const createReservationRating = (
+  reservationId: number,
+  data: CreateRatingDto,
+) => {
+  return wrapRequest<Rating>(
+    client.post(`/reservations/${reservationId}/ratings`, data),
+  );
+};
+
+export const getReservationRating = (
+  reservationId: number,
+  direction: RatingDirection = 'customer_to_company',
+) => {
+  return wrapRequest<Rating | null>(
+    client.get(`/reservations/${reservationId}/ratings`, {
+      params: {direction},
+    }),
+  );
 };

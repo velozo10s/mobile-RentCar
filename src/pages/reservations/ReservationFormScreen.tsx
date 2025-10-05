@@ -79,7 +79,7 @@ export default function ReservationFormScreen() {
         {backgroundColor: theme.colors.background},
       ]}
       enableOnAndroid={true}
-      extraScrollHeight={20}
+      extraScrollHeight={30}
       keyboardOpeningTime={0}
       keyboardShouldPersistTaps="handled">
       <ScrollView>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 24,
-    paddingTop: '50%',
+    paddingTop: '30%',
   },
   title: {
     fontWeight: '700',

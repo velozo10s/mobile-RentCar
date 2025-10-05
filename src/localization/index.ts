@@ -53,6 +53,7 @@ void i18n
       resources,
       fallbackLng: 'en',
       react: {useSuspense: false},
+      interpolation: {escapeValue: false},
     },
     () => {
       // ready
