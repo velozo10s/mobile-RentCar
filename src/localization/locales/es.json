@@ -222,6 +222,27 @@
    "invalidCustomerStatus": "Identificador del usuario invalido.",
    "notOwner": "Esta reserva no es tuya.",
    "cannotCancelled": "No se puede cancelar despues de la fecha de inicio."
+  },
+  "employees": {
+   "required": "Faltan campos obligatorios.",
+   "alreadyExists": "El usuario/correo no está disponible.",
+   "invalidId": "Identificador inválido.",
+   "notFound": "Empleado no encontrado."
+  },
+  "vehicles": {
+   "missingField": "Falta campo requerido.",
+   "duplicate": "Ya existe un vehículo con los mismos datos (ej. matrícula).",
+   "invalidId": "Identificador inválido.",
+   "upcomingReservations": "El vehículo tiene reservas actuales o próximas.",
+   "notFound": "Vehículo no encontrado."
+  },
+  "ratings": {
+   "invalidId": "Identificador de reserva inválido.",
+   "invalidDirection": "Dirección inválida.",
+   "invalidScore": "Puntaje inválido (1..5).",
+   "notEligible": "La reserva debe estar finalizada para poder calificar.",
+   "alreadyExists": "Ya existe una calificación para esta reserva y dirección.",
+   "invalidUser": "Identificador de usuario inválido."
   }
  }
 }

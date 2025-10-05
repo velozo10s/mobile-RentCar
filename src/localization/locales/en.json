@@ -222,6 +222,27 @@
    "invalidCustomerStatus": "Invalid customer status.",
    "notOwner": "Not your reservation.",
    "cannotCancelled": "Cannot cancel after start time."
+  },
+  "employees": {
+   "required": "Required fields are missing.",
+   "alreadyExists": "The username or email is already taken.",
+   "invalidId": "Invalid identifier.",
+   "notFound": "Employee not found."
+  },
+  "vehicles": {
+   "missingField": "A required field is missing.",
+   "duplicate": "A vehicle with the same data (e.g., license plate) already exists.",
+   "invalidId": "Invalid identifier.",
+   "upcomingReservations": "The vehicle has current or upcoming reservations.",
+   "notFound": "Vehicle not found."
+  },
+  "ratings": {
+   "invalidId": "Invalid reservation identifier.",
+   "invalidDirection": "Invalid direction.",
+   "invalidScore": "Invalid score (1–5).",
+   "notEligible": "The reservation must be completed to rate.",
+   "alreadyExists": "A rating for this reservation and direction already exists.",
+   "invalidUser": "Invalid user identifier."
   }
  }
 }
