@@ -174,7 +174,8 @@
  },
  "modals": {
   "userAccount": {
-   "title": "Usuario: {{username}}"
+   "title": "Hola, {{username}}",
+   "greeting": "Hello there!"
   },
   "selectLanguageModal": {
    "title": "Seleccionar Idioma",
@@ -244,5 +245,16 @@
    "alreadyExists": "Ya existe una calificación para esta reserva y dirección.",
    "invalidUser": "Identificador de usuario inválido."
   }
+ },
+ "docs": {
+  "title": "Documentos de identidad",
+  "subtitle": "Upload the front and back of your ID and driver license. You can take a photo or pick a file.",
+  "documentFront": "CI - frente",
+  "documentBack": "CI - atras",
+  "licenseFront": "Licencia de conducir - frente",
+  "licenseBack": "Licencia de conducir - atras",
+  "open": "Subir documentos",
+  "uploadSuccess": "Documentos actualizados correctamente.",
+  "uploadError": "No se pudieron actualizar los documentos."
  }
 }

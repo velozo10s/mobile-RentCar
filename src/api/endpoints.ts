@@ -4,6 +4,11 @@ import {
   Rating,
   RatingDirection,
 } from '../lib/types/ratings.ts';
+import {
+  buildFormData,
+  UploadDocsPayload,
+  UserWithDocs,
+} from '../lib/types/userDocs.ts';
 
 export const login = (data: {[key: string]: any}) => {
   return wrapRequest(client.post('/auth/login/', data));
@@ -71,4 +76,20 @@ export const getReservationRating = (
       params: {direction},
     }),
   );
+};
+
+export const uploadIdentityDocs = (
+  payload: UploadDocsPayload,
+  endpoint = '/users/me/documents',
+) => {
+  const formData = buildFormData(payload);
+  return wrapRequest<{ok: boolean; files?: Record<string, string>}>(
+    client.post(endpoint, formData, {
+      headers: {'Content-Type': 'multipart/form-data'},
+    }),
+  );
+};
+
+export const getUserWithDocs = (userId: number) => {
+  return wrapRequest<UserWithDocs>(client.get(`/users/${userId}`));
 };

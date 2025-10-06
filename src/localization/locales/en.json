@@ -16,7 +16,9 @@
   "inbox": "Inbox",
   "viewDetails": "View details",
   "empty": "No data found",
-  "time": "Time"
+  "time": "Time",
+  "upload": "Upload",
+  "close": "Close"
  },
  "tabNavigator": {
   "home": "Home",
@@ -174,7 +176,8 @@
  },
  "modals": {
   "userAccount": {
-   "title": "User: {{username}}"
+   "title": "Hi, {{username}}",
+   "greeting": "Hello there!"
   },
   "selectLanguageModal": {
    "title": "Select Language",
@@ -244,5 +247,16 @@
    "alreadyExists": "A rating for this reservation and direction already exists.",
    "invalidUser": "Invalid user identifier."
   }
+ },
+ "docs": {
+  "title": "Identity documents",
+  "subtitle": "Upload the front and back of your ID and driver license. You can take a photo or pick a file.",
+  "documentFront": "ID - front",
+  "documentBack": "ID - back",
+  "licenseFront": "Driver license - front",
+  "licenseBack": "Driver license - back",
+  "open": "Upload documents",
+  "uploadSuccess": "Documents uploaded successfully",
+  "uploadError": "Could not upload documents"
  }
 }
