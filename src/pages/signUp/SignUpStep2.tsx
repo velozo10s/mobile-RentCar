@@ -126,9 +126,8 @@ export default function SignUpStep2({onBack, onNext}: SignUpStep2Props) {
           name="birthDate"
           label={t('signUp.birthDate')}
           placeholder={t('signUp.birthDatePlaceholder')}
-          maximumDate={MAX_BIRTH_DATE} // 👈 bloquea fechas > (hoy-18)
-          // minimumDate={yearsAgo(100)}  // (opcional) no permitir >100 años
-          // mode="date" etc.
+          maximumDate={MAX_BIRTH_DATE}
+          showTime={false}
         />
 
         <Field
